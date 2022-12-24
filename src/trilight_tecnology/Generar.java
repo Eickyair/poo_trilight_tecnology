@@ -28,9 +28,21 @@ public class Generar {
     private String pathMateriasDb;
     private static Boolean single = false;
     
+    /**
+     * constructor vacio
+     */
     public Generar() {
     }
-
+    /**
+     * Este metedo solo se ejecuta una vez con el 
+     * attr single
+     * @param pathDbSrcAlu ruta del archivo que
+     * funciona como fuente principal para extraer
+     * registros de manera aleatoria
+     * @param pathMateriasDb ruta del archivo csv
+     * de donde se extrae toda la informacion de
+     * las materias que tiene el plan de estudios
+     */
     public Generar(String pathDbSrcAlu, String pathMateriasDb) {
         if(single) return;
         single = true;
@@ -38,6 +50,16 @@ public class Generar {
         this.pathMateriasDb = pathMateriasDb;
         generarAlumnos("./src/db/mainAlu.csv");
     }
+    
+    /**
+     * Dado un registro en formato csv de alumno
+     * se extrae el token que representa la edad
+     * y se castea a Integer
+     * @param rec Registro de un alumno en formato csv
+     * con la siguiente estructura:
+     * id,nombre,apellido,direccion,edad
+     * @return Valor del edad que posee este alumno
+     */
     private Integer getEdad(String rec){
         StringTokenizer tok = new StringTokenizer(rec,",");
         Integer edad=18;
@@ -52,6 +74,15 @@ public class Generar {
         }
         return edad;
     }
+    
+    /**
+     * Metodo que selecciona 500 registros
+     * aleatorios del archivo pathDbSrcAlu
+     * para ser reescritos en pathDbAlumnos
+     * @param pathDbAlumnos Ruta donde se van a 
+     * escribir los 500 alumnos seleccionados
+     * aleatoriamente
+     */
     private void generarAlumnos(String pathDbAlumnos){
         Csv csv = new Csv(pathDbSrcAlu);
         String[] recordsAlumnos = csv.getAllRecords();
@@ -87,6 +118,15 @@ public class Generar {
         generarHistoriales("./src/db/registros",ids, edades);
     }
     
+    /**
+     * Conversion de un array de Strings que
+     * posee la informacion de las materias de cada semestre
+     * @param semestres combinacion de todas las materias
+     * que posee cada semestre
+     * @return mapa que tiene como llave el numero del
+     * semestre y como valor un array con todas las materias
+     * de este semestre
+     */
     private HashMap<Integer,ArrayList<String>> mapaSemestres(String[] semestres){
         HashMap<Integer,ArrayList<String>> map = new HashMap<Integer,ArrayList<String>>();
         for(String semestre : semestres){
@@ -105,14 +145,19 @@ public class Generar {
                 SEMESTRE++;
             }
         }
-//        for(Integer x : map.keySet()){
-//            System.out.println("Semestre:"+x);
-//            for(String line:map.get(x)){
-//                System.out.println("\t"+line);
-//            }
-//        }
         return map;
     }
+    
+    /**
+     * Eliminacion de varios elementos por indices
+     * @param materias array del cual queremos eliminar
+     * los elementos
+     * @param toDelete conjunto de indices que van a ser
+     * eleminados
+     * @return array con todos lo elementos de materias pero
+     * sin los que coincidan con cualquier indice dentro de
+     * toDelete
+     */
     private ArrayList<String> deleteMaterias(ArrayList<String> materias, ArrayList<Integer> toDelete){
         ArrayList<String> nuevo = new ArrayList<String>();
         int i = 0;
@@ -125,6 +170,15 @@ public class Generar {
         }
         return nuevo;
     }
+    
+    /**
+     * Generacion de un historial para cada id
+     * @param pathDbHistoriales directiorio donde se
+     * van a escribir las historiales
+     * @param ids conjunto de ids de los alumnos
+     * @param edades edad de cada alumno, en base a la edad
+     * se calcula el semestre que cursa el alumno
+     */
     private void generarHistoriales(String pathDbHistoriales, ArrayList<Integer> ids, ArrayList<Integer> edades){
         File carpeta = new File("./src/db/registros");
         for(File file:carpeta.listFiles()){

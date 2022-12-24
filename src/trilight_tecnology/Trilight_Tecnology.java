@@ -4,12 +4,7 @@
  */
 package trilight_tecnology;
 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Random;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import trilight_tecnology.controllers.Generar;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -37,7 +32,7 @@ public class Trilight_Tecnology {
         //Menu de acceso
         System.out.println("Ingrese su nombre de usuario:");
         usuario = ingreso.nextLine();
-        System.out.println("Ingrese su contraseña:");
+        System.out.println("Ingrese su contrasenia:");
         contraseña = ingreso.nextLine();
         
         if(usuario.equals("AdminTT") && contraseña.equals("POO01")) {

@@ -1,0 +1,32 @@
+clave,nombre,creditos,semestre,calificacion
+1120,Algebra,8,1,6.269259558822439
+1121,Calculo y geometria analitica,12,1,6.18556142439484
+1123,Quimica,10,1,9.340461039029773
+1122,Fundamentos de programacion,10,1,9.480189487034933
+1130,Fundamentos de fisica,6,1,9.859224541844455
+1220,Algebra lineal,8,2,7.033720598490947
+1221,Calculo integral,8,2,7.6643950165201105
+1228,Mecanica,12,2,7.370123012981418
+1124,Redaccion y exposicion de temas de ingenieria,6,2,9.92977108275034
+1227,Estructura de datos y algoritmos I,10,2,6.4821154937298475
+1436,Probabilidad,8,3,6.675816170275747
+1321,Calculo vectorial,8,3,6.253283753878469
+1325,Ecuaciones diferenciales,8,3,7.358150040535744
+1222,Cultura y comunicacion,2,3,7.873635422632981
+1317,Estructura de datos y algoritmos II,10,3,7.345389793296349
+1323,Programacion orientada a objetos,10,3,7.746626765054497
+1445,Fundamentos de estadistica,8,4,8.54313905851389
+1414,Electricidad y magnetismo,10,4,6.256313487914285
+1433,Analisis numerico,8,4,8.625162992833152
+1424,Matematicas avanzadas,8,4,6.059926121532104
+0119,Estructuras discretas,8,4,9.894691819069235
+1503,Estructura y programacion de computadoras,8,5,6.047746525272026
+0138,Dispositivos electronicos,10,5,9.87852267125282
+0442,Lenguajes formales y automatas,8,5,8.585078009143317
+1473,Señales y sistemas,8,5,7.076794713696428
+1531,Ingenieria de software,8,5,9.999263165942178
+1645,Disenio digital y moderno,10,6,7.137153944327826
+1644,Bases de datos,14,6,9.439509501625373
+1562,Circuitos electronicos,8,6,6.941154583946391
+1643,Administracion de proyectos de software,8,6,7.222656162564736
+0840,Sistemas operativos,8,6,7.093323181891854

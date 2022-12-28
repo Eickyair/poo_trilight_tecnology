@@ -1,7 +1,6 @@
-build/
-dist/
-nbproject/
-build.xml
-manifest.mf
+# Documentos autogenerados
 src/db/registros
 src/db/mainAlu.csv
+
+# Backlog
+backlog.txt

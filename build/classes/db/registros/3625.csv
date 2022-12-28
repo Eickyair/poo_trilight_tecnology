@@ -1,0 +1,48 @@
+clave,nombre,creditos,semestre,calificacion
+1121,Calculo y geometria analitica,12,1,8.785560731365388
+1123,Quimica,10,1,9.066046882596295
+1130,Fundamentos de fisica,6,1,6.123917627349688
+1122,Fundamentos de programacion,10,1,7.9873123453067985
+1120,Algebra,8,1,7.24587444298913
+1220,Algebra lineal,8,2,7.320085595487301
+1221,Calculo integral,8,2,7.657203752012642
+1228,Mecanica,12,2,6.345554323293579
+1124,Redaccion y exposicion de temas de ingenieria,6,2,9.899218356787351
+1227,Estructura de datos y algoritmos I,10,2,9.013555876098529
+1436,Probabilidad,8,3,8.446609323666355
+1321,Calculo vectorial,8,3,7.580715056966429
+1325,Ecuaciones diferenciales,8,3,9.680280077096452
+1222,Cultura y comunicacion,2,3,9.485524412830788
+1317,Estructura de datos y algoritmos II,10,3,9.687815403199789
+1323,Programacion orientada a objetos,10,3,9.2478976931804
+1445,Fundamentos de estadistica,8,4,7.658891664877067
+1414,Electricidad y magnetismo,10,4,9.25947656967066
+1424,Matematicas avanzadas,8,4,8.51330744641081
+0119,Estructuras discretas,8,4,7.884574811503386
+1433,Analisis numerico,8,4,9.754312401966974
+1503,Estructura y programacion de computadoras,8,5,8.355259843609275
+0138,Dispositivos electronicos,10,5,8.07093249133255
+0442,Lenguajes formales y automatas,8,5,9.115348938485981
+1473,Señales y sistemas,8,5,8.673940669589909
+1531,Ingenieria de software,8,5,7.707201092574487
+0840,Sistemas operativos,8,6,9.557416276452605
+1645,Disenio digital y moderno,10,6,7.724766170595818
+1644,Bases de datos,14,6,6.710367575728604
+1643,Administracion de proyectos de software,8,6,6.061567743744938
+1562,Circuitos electronicos,8,6,8.702079363885037
+1537,Finanzas en la ingenieria en computacion,6,7,7.5108031993636954
+1535,Diseño digital VLSI,8,7,6.034588972239705
+0434,Compiladores,8,7,6.136697590004925
+1686,Sistemas de comunicaciones,8,7,9.262397699414024
+1413,Introduccion a la economia,8,7,9.704306577358668
+0406,Inteligencia artificial,8,7,7.2520997964262035
+1000,Optativa de ciencias sociales y humanidades,6,8,9.364278230961713
+1672,Microcomputadoras,8,8,9.284459855534774
+1590,Computacion graficas e iteracion humano-computadora,10,8,7.837319278510005
+1052,Etica profesional,6,8,6.24250018679486
+1598,Redes de datos seguras,14,8,8.190414820312373
+1867,Organizacion y arquitectura de computadoras,8,9,8.197778745637628
+1858,Fundamentos de sistemas embebidos,8,9,6.165884683118598
+1959,Sistemas distribuidos,8,9,7.682150731237012
+1952,Optativa de campo de profundizacion,8,9,6.70027919227609
+2080,Recursos y necesidades de Mexico,8,9,8.255321715058793

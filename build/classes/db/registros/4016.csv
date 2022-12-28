@@ -1,0 +1,43 @@
+clave,nombre,creditos,semestre,calificacion
+1121,Calculo y geometria analitica,12,1,6.965184748999303
+1123,Quimica,10,1,9.514963842912213
+1130,Fundamentos de fisica,6,1,9.390423944338597
+1122,Fundamentos de programacion,10,1,7.514042316351586
+1120,Algebra,8,1,8.643645928711912
+1220,Algebra lineal,8,2,6.352571532792899
+1221,Calculo integral,8,2,9.474968560403449
+1228,Mecanica,12,2,8.615516374407466
+1124,Redaccion y exposicion de temas de ingenieria,6,2,8.514765088405014
+1227,Estructura de datos y algoritmos I,10,2,6.957391984992167
+1436,Probabilidad,8,3,6.3352546139286865
+1321,Calculo vectorial,8,3,6.890009162905003
+1325,Ecuaciones diferenciales,8,3,6.879334397932286
+1222,Cultura y comunicacion,2,3,7.642392935062947
+1317,Estructura de datos y algoritmos II,10,3,6.604659986016388
+1323,Programacion orientada a objetos,10,3,8.534609896614292
+1445,Fundamentos de estadistica,8,4,7.56746407767198
+1414,Electricidad y magnetismo,10,4,7.126710454124853
+1433,Analisis numerico,8,4,6.5668553478234815
+1424,Matematicas avanzadas,8,4,8.924886693251278
+0119,Estructuras discretas,8,4,9.640279994327898
+1503,Estructura y programacion de computadoras,8,5,6.309403379166561
+0138,Dispositivos electronicos,10,5,9.960851084323457
+0442,Lenguajes formales y automatas,8,5,9.815552322531111
+1473,Señales y sistemas,8,5,7.916270773487026
+1531,Ingenieria de software,8,5,9.734953760543785
+0840,Sistemas operativos,8,6,6.288490001402115
+1645,Disenio digital y moderno,10,6,7.557645212192513
+1644,Bases de datos,14,6,8.506977300787108
+1643,Administracion de proyectos de software,8,6,6.955712010326973
+1562,Circuitos electronicos,8,6,6.482905121073044
+1537,Finanzas en la ingenieria en computacion,6,7,8.289376535617597
+1535,Diseño digital VLSI,8,7,9.175623279818662
+0406,Inteligencia artificial,8,7,7.031646048690064
+1686,Sistemas de comunicaciones,8,7,9.487870404889426
+1413,Introduccion a la economia,8,7,8.655454525842321
+0434,Compiladores,8,7,9.086190903238009
+1000,Optativa de ciencias sociales y humanidades,6,8,6.567904190889185
+1672,Microcomputadoras,8,8,7.114376945733453
+1590,Computacion graficas e iteracion humano-computadora,10,8,9.332351395661744
+1052,Etica profesional,6,8,6.389353892651371
+1598,Redes de datos seguras,14,8,6.975862954206523

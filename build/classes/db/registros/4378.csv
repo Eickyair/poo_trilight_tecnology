@@ -1,0 +1,43 @@
+clave,nombre,creditos,semestre,calificacion
+1120,Algebra,8,1,9.270827131411878
+1121,Calculo y geometria analitica,12,1,8.412900555666178
+1123,Quimica,10,1,9.212591029530087
+1130,Fundamentos de fisica,6,1,6.8947990100738545
+1122,Fundamentos de programacion,10,1,8.016887018112532
+1220,Algebra lineal,8,2,6.547120548886195
+1221,Calculo integral,8,2,9.843526448837826
+1228,Mecanica,12,2,7.688133346349053
+1124,Redaccion y exposicion de temas de ingenieria,6,2,7.46647772078428
+1227,Estructura de datos y algoritmos I,10,2,6.5187781443975705
+1436,Probabilidad,8,3,9.881506715407566
+1325,Ecuaciones diferenciales,8,3,8.569845995971775
+1222,Cultura y comunicacion,2,3,7.059010519610615
+1317,Estructura de datos y algoritmos II,10,3,9.465197412601977
+1323,Programacion orientada a objetos,10,3,6.321256049235222
+1321,Calculo vectorial,8,3,8.097947359001582
+1445,Fundamentos de estadistica,8,4,9.648565972415168
+1414,Electricidad y magnetismo,10,4,6.82803024576644
+1424,Matematicas avanzadas,8,4,9.339495673086116
+0119,Estructuras discretas,8,4,6.438482635697249
+1433,Analisis numerico,8,4,8.025862685743519
+1503,Estructura y programacion de computadoras,8,5,6.150536704909891
+0442,Lenguajes formales y automatas,8,5,6.797292076858053
+1473,Señales y sistemas,8,5,8.873126316115837
+1531,Ingenieria de software,8,5,7.406874479887083
+0138,Dispositivos electronicos,10,5,7.992056726067553
+0840,Sistemas operativos,8,6,8.057258337764805
+1645,Disenio digital y moderno,10,6,7.391802167776668
+1562,Circuitos electronicos,8,6,8.515170823363237
+1643,Administracion de proyectos de software,8,6,9.115068956387727
+1644,Bases de datos,14,6,8.244638310517496
+1537,Finanzas en la ingenieria en computacion,6,7,9.230802510353847
+1535,Diseño digital VLSI,8,7,8.420211846127422
+0406,Inteligencia artificial,8,7,9.291637561286555
+0434,Compiladores,8,7,6.1789564830303085
+1686,Sistemas de comunicaciones,8,7,9.470787079750663
+1413,Introduccion a la economia,8,7,8.953985698768927
+1672,Microcomputadoras,8,8,6.392456291632928
+1590,Computacion graficas e iteracion humano-computadora,10,8,7.42557606386719
+1052,Etica profesional,6,8,8.187947174123789
+1598,Redes de datos seguras,14,8,7.3135331031788695
+1000,Optativa de ciencias sociales y humanidades,6,8,8.863102758821782

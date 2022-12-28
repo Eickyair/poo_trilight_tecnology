@@ -49,7 +49,7 @@ public class Generar {
         single = true;
         this.pathDbSrcAlu = pathDbSrcAlu;
         this.pathMateriasDb = pathMateriasDb;
-        generarAlumnos("./src/db/mainAlu.csv");
+        generarAlumnos("./db/mainAlu.csv");
     }
     
     /**
@@ -116,7 +116,7 @@ public class Generar {
             pw.println(record);
         }
         pw.close();
-        generarHistoriales("./src/db/registros",ids, edades);
+        generarHistoriales("./db/registros",ids, edades);
     }
     
     /**
@@ -181,11 +181,11 @@ public class Generar {
      * se calcula el semestre que cursa el alumno
      */
     private void generarHistoriales(String pathDbHistoriales, ArrayList<Integer> ids, ArrayList<Integer> edades){
-        File carpeta = new File("./src/db/registros");
+        File carpeta = new File("./db/registros");
         for(File file:carpeta.listFiles()){
             file.delete();
         }
-        Csv csv = new Csv("./src/db/semestres.csv");
+        Csv csv = new Csv("./db/semestres.csv");
         String[] semestres = csv.getAllRecords();
   
         
@@ -198,7 +198,7 @@ public class Generar {
             Integer edad = edades.get(i);
             i++;
             try { 
-                fw = new FileWriter("./src/db/registros/"+id.toString()+".csv");
+                fw = new FileWriter("./db/registros/"+id.toString()+".csv");
                 bw = new BufferedWriter(fw);
                 pw = new PrintWriter(bw);
             } catch (IOException ex) {

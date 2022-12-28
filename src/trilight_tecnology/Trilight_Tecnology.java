@@ -21,7 +21,7 @@ public class Trilight_Tecnology {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Generar x = new Generar("./src/db/alumnos.csv","");
+        Generar x = new Generar("./db/alumnos.csv","");
         LogAdminControl logCo = new LogAdminControl();
         LogAdminView logView = new LogAdminView();
         String[] data = logView.getInfoLog();

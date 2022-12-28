@@ -23,7 +23,7 @@ public class LogAdminControl {
      * @return Respuesta de la busqueda
      */
     public Boolean validarUsuario(String correo, String pass){
-        Csv csv = new Csv("./src/db/admins.csv");
+        Csv csv = new Csv("./db/admins.csv");
         String emailAdmi = null;
         String passAdmi = null;
         String[] admins =csv.getAllRecords();

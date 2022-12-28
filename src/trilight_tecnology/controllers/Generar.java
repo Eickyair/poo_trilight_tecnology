@@ -105,6 +105,7 @@ public class Generar {
         HashMap<Integer,Integer> toFind = new HashMap<Integer,Integer>();
         Random rand = new Random();
         int maxValue = recordsAlumnos.length;
+        pw.println("id,nombre,apellido,direccion,edad");
         while(toFind.size()<500){
             Integer i = rand.nextInt(maxValue);
             if(toFind.containsKey(i)){continue;}

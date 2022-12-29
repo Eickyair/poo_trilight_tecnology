@@ -53,6 +53,12 @@ public class RegistroAlumno implements Registrable {
         record = ""+idAlumno+","+nombre+","+apellido+","+direccion+","+edad;
         return record;
     }
-    
+
+    @Override
+    public String toString() {
+        String s = ""+idAlumno+"\t"+nombre+"\t"+apellido+"\t"+direccion+"\t"+edad;
+        return s;
+    }
+     
      
 }

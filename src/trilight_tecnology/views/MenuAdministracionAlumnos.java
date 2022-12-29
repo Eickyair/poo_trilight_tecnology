@@ -30,8 +30,6 @@ public class MenuAdministracionAlumnos extends Menu{
         switch (op) {
             case 1:
                 // Crear Alumno
-                controler.ordenarPorNombre();
-                controler.mostrarAlumnos();
                 break;
             case 2:
                 // Consultar un alumno

@@ -44,13 +44,22 @@ public class Menu {
         int op = Integer.parseInt(opt.nextLine());
         switch (op) {
             case 1:
-                
+                // Gestion de alumnos
+                String[] opcionesMenu = {
+                    "Crear un Alumno",
+                    "Consultar la informacion de un Alumno",
+                    "Actualizar la informarion de un Alumno",
+                    "Eliminar el registro de un Alumno",
+                    "Regresar"
+                };
+                MenuAdministracionAlumnos m = new MenuAdministracionAlumnos(opcionesMenu);
+                m.opcionesPrincipales();
                 break;
             case 2:
-                
+                // Gestion de materias 
                 break;            
             case 3:
-                
+                // Determinar numeros de inscripccions
                 break;            
             case 4:
                 //salir

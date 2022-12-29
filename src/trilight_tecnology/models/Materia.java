@@ -13,7 +13,8 @@ public class Materia {
     public String nombre;
     public Integer creditos;
     public Integer idAlumno;
-    public double calificacion;
+    public Integer semestre;
+    public Double calificacion;
 
     public Materia() {
     }
@@ -25,6 +26,11 @@ public class Materia {
         this.creditos = creditos;
         this.idAlumno = idAlumno;
         this.calificacion = calificacion;
+    }
+
+    @Override
+    public String toString() {
+        return "Materia{" + "clave=" + clave + ", nombre=" + nombre + ", creditos=" + creditos + ", idAlumno=" + idAlumno + ", semestre=" + semestre + ", calificacion=" + calificacion + '}';
     }
     
 }

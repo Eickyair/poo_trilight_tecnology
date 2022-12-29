@@ -21,6 +21,10 @@ public class RegistrosAlumnosView {
         if(a<b)return a;
         return b;
     }
+    private Integer max(Integer a,Integer b){
+        if(a>b)return a;
+        return b;
+    }
     private Integer aumentarSlide(Integer numSlides,Integer paginaActual){
         System.out.println("Entro a +");
         if((paginaActual+1) == numSlides)return 0;
@@ -33,6 +37,7 @@ public class RegistrosAlumnosView {
     }
     public Integer mostrarEnSlides(Integer numSlides){
         Integer numItemsPorSlide = toPrint.length/numSlides;
+        numItemsPorSlide = max(numItemsPorSlide,1);
         Integer len = toPrint.length;
         if(len%numSlides!=0)numSlides++;
         Integer paginaActual = 0;

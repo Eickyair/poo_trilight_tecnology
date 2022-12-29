@@ -5,9 +5,12 @@
 package trilight_tecnology.controllers;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -31,7 +34,16 @@ public class Csv {
         }
         return fr;
     }
-
+    
+    private FileWriter writer(String pathFile){
+        FileWriter fw = null;
+        try {
+            fw = new FileWriter(pathFile);
+        } catch (IOException ex) {
+            Logger.getLogger(Csv.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return fw;
+    }
     public Csv(String pathCsv) {
         this.pathCsv = pathCsv;
     }
@@ -60,4 +72,19 @@ public class Csv {
         }
         return null;
     }
+    
+    public Boolean elimarRegistro(Integer fila){
+        String[] data = getAllRecords();
+        System.out.println("num:"+data.length);
+        FileWriter fw = writer("./db/mainAlu.csv");
+        BufferedWriter bw = new BufferedWriter(fw);
+        PrintWriter pr = new PrintWriter(bw);
+        for (int i = 0; i < data.length; i++){
+            if(i==fila)continue;
+            pr.println(data[i]);
+        }
+        pr.close();
+        return true;
+    }
+    
 }

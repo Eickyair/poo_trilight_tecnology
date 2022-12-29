@@ -13,7 +13,8 @@ import java.util.ArrayList;
 public class Semestre {
     public Integer numero;
     public ArrayList<Materia> materias;
-
+    public Semestre(){
+    }
     public Semestre(Integer numero, ArrayList<Materia> materias) {
         this.numero = numero;
         this.materias = materias;

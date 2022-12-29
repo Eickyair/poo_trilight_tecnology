@@ -15,6 +15,10 @@ public class Materia {
     public Integer idAlumno;
     public double calificacion;
 
+    public Materia() {
+    }
+
+     
     public Materia(Integer clave, String nombre, Integer creditos, Integer idAlumno, double calificacion) {
         this.clave = clave;
         this.nombre = nombre;

@@ -4,11 +4,13 @@
  */
 package trilight_tecnology.models;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Milanesus
  */
-public class Materia {
+public class Materia implements ToList{
     public Integer clave;
     public String nombre;
     public Integer creditos;
@@ -32,5 +34,11 @@ public class Materia {
     public String toString() {
         return "Materia{" + "clave=" + clave + ", nombre=" + nombre + ", creditos=" + creditos + ", idAlumno=" + idAlumno + ", semestre=" + semestre + ", calificacion=" + calificacion + '}';
     }
+
+    @Override
+    public ArrayList<String> toListStrings() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     
 }

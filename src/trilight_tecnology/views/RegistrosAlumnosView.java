@@ -11,7 +11,7 @@ import trilight_tecnology.models.RegistroAlumno;
  *
  * @author Anvil
  */
-public class RegistrosAlumnosView {
+public class RegistrosAlumnosView extends Tabla {
     private RegistroAlumno[] toPrint;
 
     public RegistrosAlumnosView(RegistroAlumno[] toPrint) {
@@ -26,12 +26,10 @@ public class RegistrosAlumnosView {
         return b;
     }
     private Integer aumentarSlide(Integer numSlides,Integer paginaActual){
-        System.out.println("Entro a +");
         if((paginaActual+1) == numSlides)return 0;
         return paginaActual+1;
     }
     private Integer decrementarSlide(Integer numSlides, Integer paginaActual){
-        System.out.println("Entro a -");
         if((paginaActual-1)==-1)return (numSlides-1);
         return paginaActual-1;
     }
@@ -51,20 +49,24 @@ public class RegistrosAlumnosView {
             String aws = input.nextLine();
             if(aws.compareTo("+")==0)paginaActual = aumentarSlide(numSlides,paginaActual);
             if(aws.compareTo("-")==0)paginaActual = decrementarSlide(numSlides,paginaActual);
-            if(aws.matches("[+-]?\\d*(\\.\\d+)?"))return Integer.parseInt(aws);
+            if(isStringInteger(aws,10)){
+                Integer res = Integer.parseInt(aws);
+                if(res>=0)return res;
+            }
         }
     }
-    private String wrap(int len){
-        return "%"+len+"s|";
-    }
-    private String wrapLine(int len){
-        String line = "";
-        for (int i = 0; i < len; i++) {
-            line+="-";
+    private boolean isStringInteger(String stringToCheck, int radix) {
+        if(stringToCheck.isEmpty()) return false;
+        for(int i = 0; i < stringToCheck.length(); i++) {
+            if(i == 0 && stringToCheck.charAt(i) == '-'){
+                if(stringToCheck.length() == 1) return false;
+                else continue;
+            }
+            if(Character.digit(stringToCheck.charAt(i),radix) < 0) return false;
         }
-        return line;
+        return true;
     }
-    private void mostrarPagina(Integer inicio, Integer end){
+    public void mostrarPagina(Integer inicio, Integer end){
         int ROW = 5;
         int ID_ALUMNO = 6;
         int NOMBRE = 15;

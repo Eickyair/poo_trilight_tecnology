@@ -1,13 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-
-
-
 package trilight_tecnology.controllers;
 
-import trilight_tecnology.controllers.Csv;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -26,32 +18,27 @@ import java.util.logging.Logger;
  */
 public class Generar {
     private String pathDbSrcAlu;
-    private String pathMateriasDb;
     private static Boolean single = false;
-    
+
     /**
      * constructor vacio
      */
     public Generar() {
     }
     /**
-     * Este metedo solo se ejecuta una vez con el 
+     * Este metedo solo se ejecuta una vez con el
      * attr single
      * @param pathDbSrcAlu ruta del archivo que
      * funciona como fuente principal para extraer
      * registros de manera aleatoria
-     * @param pathMateriasDb ruta del archivo csv
-     * de donde se extrae toda la informacion de
-     * las materias que tiene el plan de estudios
      */
-    public Generar(String pathDbSrcAlu, String pathMateriasDb) {
+    public Generar(String pathDbSrcAlu) {
         if(single) return;
         single = true;
         this.pathDbSrcAlu = pathDbSrcAlu;
-        this.pathMateriasDb = pathMateriasDb;
         generarAlumnos("./db/mainAlu.csv");
     }
-    
+
     /**
      * Dado un registro en formato csv de alumno
      * se extrae el token que representa la edad
@@ -75,12 +62,12 @@ public class Generar {
         }
         return edad;
     }
-    
+
     /**
      * Metodo que selecciona 500 registros
      * aleatorios del archivo pathDbSrcAlu
      * para ser reescritos en pathDbAlumnos
-     * @param pathDbAlumnos Ruta donde se van a 
+     * @param pathDbAlumnos Ruta donde se van a
      * escribir los 500 alumnos seleccionados
      * aleatoriamente
      */
@@ -89,11 +76,11 @@ public class Generar {
         String[] recordsAlumnos = csv.getAllRecords();
         ArrayList<Integer> ids = new ArrayList<Integer>();
         ArrayList<Integer> edades = new ArrayList<Integer>();
-   
+
         FileWriter fw;
         BufferedWriter bw;
         PrintWriter pw;
-        try { 
+        try {
             fw = new FileWriter(pathDbAlumnos);
             bw = new BufferedWriter(fw);
             pw = new PrintWriter(bw);
@@ -101,7 +88,7 @@ public class Generar {
             Logger.getLogger(Generar.class.getName()).log(Level.SEVERE, null, ex);
             return;
         }
-        
+
         HashMap<Integer,Integer> toFind = new HashMap<Integer,Integer>();
         Random rand = new Random();
         int maxValue = recordsAlumnos.length;
@@ -119,7 +106,7 @@ public class Generar {
         pw.close();
         generarHistoriales("./db/registros",ids, edades);
     }
-    
+
     /**
      * Conversion de un array de Strings que
      * posee la informacion de las materias de cada semestre
@@ -149,30 +136,7 @@ public class Generar {
         }
         return map;
     }
-    
-    /**
-     * Eliminacion de varios elementos por indices
-     * @param materias array del cual queremos eliminar
-     * los elementos
-     * @param toDelete conjunto de indices que van a ser
-     * eleminados
-     * @return array con todos lo elementos de materias pero
-     * sin los que coincidan con cualquier indice dentro de
-     * toDelete
-     */
-    private ArrayList<String> deleteMaterias(ArrayList<String> materias, ArrayList<Integer> toDelete){
-        ArrayList<String> nuevo = new ArrayList<String>();
-        int i = 0;
-        int index = 0;
-        for(String mat:materias){
-            if(i!=toDelete.get(index)){
-                nuevo.add(mat);
-            }else{index++;}
-            i++;
-        }
-        return nuevo;
-    }
-    
+
     /**
      * Generacion de un historial para cada id
      * @param pathDbHistoriales directiorio donde se
@@ -188,8 +152,8 @@ public class Generar {
         }
         Csv csv = new Csv("./db/semestres.csv");
         String[] semestres = csv.getAllRecords();
-  
-        
+
+
         String header = "clave,nombre,creditos,semestre,calificacion";
         int i = 0;
         for(Integer id:ids){
@@ -239,10 +203,11 @@ public class Generar {
                     for (int k = 0; k < 3; k++){
                         data+=(tok.nextToken()+",");
                     }
-                    data+=(semestre+",");
+                    Integer local = semestre+1;
+                    data+=(local+",");
                     double calf = Math.random()*4.0 + 6.0;
                     data+=calf;
-                    pw.println(data);                    
+                    pw.println(data);
                     materiaReprobada=null;
                 }
             }

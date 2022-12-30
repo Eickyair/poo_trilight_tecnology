@@ -1,5 +1,7 @@
 package trilight_tecnology.models;
 
+import java.util.ArrayList;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -9,7 +11,7 @@ package trilight_tecnology.models;
  *
  * @author Anvil
  */
-public class RegistroAlumno implements Registrable {
+public class RegistroAlumno implements Registrable,ToList {
     public Integer idAlumno;
     public String nombre;
     public String apellido;
@@ -58,6 +60,16 @@ public class RegistroAlumno implements Registrable {
     public String toString() {
         String s = ""+idAlumno+"\t"+nombre+"\t"+apellido+"\t"+direccion+"\t"+edad;
         return s;
+    }
+
+    @Override
+    public ArrayList<String> toListStrings() {
+        ArrayList<String> a = new ArrayList<String>();
+        a.add(idAlumno.toString());
+        a.add(nombre);
+        a.add(apellido);
+        a.add(edad.toString());
+        return a;
     }
      
      

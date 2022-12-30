@@ -14,26 +14,26 @@ public class Materia implements ToList{
     public Integer clave;
     public String nombre;
     public Integer creditos;
-    public Integer idAlumno;
     public Integer semestre;
     public Double calificacion;
 
     public Materia() {
     }
 
-     
-    public Materia(Integer clave, String nombre, Integer creditos, Integer idAlumno, double calificacion) {
+    public Materia(Integer clave, String nombre, Integer creditos, Integer semestre, double calificacion) {
         this.clave = clave;
         this.nombre = nombre;
         this.creditos = creditos;
-        this.idAlumno = idAlumno;
+        this.semestre = semestre;
         this.calificacion = calificacion;
     }
 
     @Override
     public String toString() {
-        return "Materia{" + "clave=" + clave + ", nombre=" + nombre + ", creditos=" + creditos + ", idAlumno=" + idAlumno + ", semestre=" + semestre + ", calificacion=" + calificacion + '}';
+        return "Materia{" + "clave=" + clave + ", nombre=" + nombre + ", creditos=" + creditos + ", semestre=" + semestre + ", calificacion=" + calificacion + '}';
     }
+
+    
 
     @Override
     public ArrayList<String> toListStrings() {

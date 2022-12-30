@@ -45,18 +45,25 @@ public class Menu {
         switch (op) {
             case 1:
                 // Gestion de alumnos
-                String[] opcionesMenu = {
+                String[] opcionesMenuAlu = {
                     "Crear un Alumno",
                     "Consultar la informacion de un Alumno",
                     "Actualizar la informarion de un Alumno",
                     "Eliminar el registro de un Alumno",
                     "Regresar"
                 };
-                MenuAdministracionAlumnos m = new MenuAdministracionAlumnos(opcionesMenu);
-                m.opcionesPrincipales();
+                MenuAdministracionAlumnos ma = new MenuAdministracionAlumnos(opcionesMenuAlu);
+                ma.opcionesPrincipales();
                 break;
             case 2:
-                // Gestion de materias 
+                // Gestion de materias
+                String[] opcionesMenuMate = {
+                    "Consultar el historial academico de un Alumno",
+                    "Actualizar el historial academico de un Alumno",
+                    "Regresar"
+                };
+                MenuCalificaciones mc = new MenuCalificaciones(opcionesMenuMate);
+                mc.opcionesPrincipales();
                 break;            
             case 3:
                 // Determinar numeros de inscripccions

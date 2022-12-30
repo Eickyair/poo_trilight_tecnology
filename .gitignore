@@ -2,6 +2,7 @@
 db/registros/
 db/mainAlu.csv
 # NetBeans specific #
+nbproject
 nbproject/private/
 build/
 nbbuild/

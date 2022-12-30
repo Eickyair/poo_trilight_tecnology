@@ -12,14 +12,17 @@ public class Materia {
     public Integer clave;
     public String nombre;
     public Integer creditos;
-    public Integer idAlumno;
+    public Integer semestre;
     public double calificacion;
 
-    public Materia(Integer clave, String nombre, Integer creditos, Integer idAlumno, double calificacion) {
+    public Materia() {
+    }
+
+    public Materia(Integer clave, String nombre, Integer creditos, Integer semestre, double calificacion) {
         this.clave = clave;
         this.nombre = nombre;
         this.creditos = creditos;
-        this.idAlumno = idAlumno;
+        this.semestre = semestre;
         this.calificacion = calificacion;
     }
     

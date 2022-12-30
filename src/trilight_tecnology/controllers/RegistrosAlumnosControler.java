@@ -71,4 +71,13 @@ public class RegistrosAlumnosControler {
         }
         return false;
     }
+    public RegistroAlumno busqueda(Integer idAlumno){
+        Csv csv = new Csv("./db/mainAlu.csv");
+        String[] alumnos = csv.getAllRecords();
+        for (int renglon = 0; renglon < alumnos.length; renglon++) {
+            parseRegistroAlumno(alumnos[renglon]);
+            if(alumno.idAlumno==idAlumno)return alumno;
+        }
+        return null;
+    }
 }

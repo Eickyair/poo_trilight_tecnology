@@ -1,7 +1,5 @@
 package trilight_tecnology.views;
 
-import java.util.Scanner;
-
 public class MenuNumerosInscr extends Menu{
     public MenuNumerosInscr(){}
     public MenuNumerosInscr(String[] op, String titulo){
@@ -9,6 +7,18 @@ public class MenuNumerosInscr extends Menu{
     }
     @Override
     public Boolean capturarOpcion() {
-        Scanner 
+        Integer op = leerOpcion();
+        switch (op) {
+            case 1:
+                //consulatar numero de inscriccion
+                break;
+            case 2:
+                //Obtener todos los numeros de inscriccion
+                break;
+            case 3:
+                //regresar
+                return false;
+        }
+        return true;
     }
 }

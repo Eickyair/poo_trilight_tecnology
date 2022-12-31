@@ -15,18 +15,17 @@ public class MenuAdministracionAlumnos extends Menu{
 
     public MenuAdministracionAlumnos() {
     }
-
-    public MenuAdministracionAlumnos(String[] op) {
-        super(op);
+    /**
+     * Menu para la gestion de alumnos
+     * @param op Array de opcciones
+     * @param titulo Titulo del menu
+     */
+    public MenuAdministracionAlumnos(String[] op, String titulo){
+        super(op,titulo);
     }
-     
     @Override
     public Boolean capturarOpcion(){
-        //Variables para el MENU PRINCIPAL
-        Scanner opt = new Scanner(System.in);
-        System.out.println("Escoge una opcion:");
-        int op = Integer.parseInt(opt.nextLine());
-        RegistrosAlumnosControler controler = new RegistrosAlumnosControler();
+        Integer op = leerOpcion();
         switch (op) {
             case 1:
                 // Crear Alumno
@@ -42,10 +41,7 @@ public class MenuAdministracionAlumnos extends Menu{
                 break;
             case 5:
                 return false;
-            default:
-                throw new AssertionError();
         }
         return true;
     }
-    
 }

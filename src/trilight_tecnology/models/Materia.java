@@ -4,13 +4,16 @@
  */
 package trilight_tecnology.models;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
+
+import trilight_tecnology.controllers.Casteador;
 
 /**
  *
  * @author Milanesus
  */
-public class Materia implements ToList{
+public class Materia implements ToList,Registrable{
     public Integer clave;
     public String nombre;
     public Integer creditos;
@@ -33,12 +36,21 @@ public class Materia implements ToList{
         return "Materia{" + "clave=" + clave + ", nombre=" + nombre + ", creditos=" + creditos + ", semestre=" + semestre + ", calificacion=" + calificacion + '}';
     }
 
-    
-
     @Override
     public ArrayList<String> toListStrings() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    
+    @Override
+    public String recordDb() {
+        String record = "";
+        Casteador cast = new Casteador();
+        record+=cast.notNullString(this.clave)+",";
+        record+=cast.notNullString(this.nombre)+",";
+        record+=cast.notNullString(this.creditos)+",";
+        record+=cast.notNullString(this.semestre)+",";
+        record+=cast.notNullString(this.calificacion);
+        return record;
+    }
+
 }

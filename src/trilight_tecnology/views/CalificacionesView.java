@@ -12,7 +12,7 @@ import trilight_tecnology.models.Materia;
  */
 public class CalificacionesView {
     private Materia[] toPrint;
-    
+
     public CalificacionesView(Materia[] toPrint) {
         this.toPrint = toPrint;
     }
@@ -30,6 +30,15 @@ public class CalificacionesView {
         if((paginaActual-1)==-1)return (numSlides-1);
         return paginaActual-1;
     }
+    public Boolean isNumber(String str){
+        Boolean res = true;
+        try{
+            Integer.parseInt(str);
+        }catch(Exception e){
+            res = false;
+        }
+        return res;
+    }
     public Integer mostrarEnSlides(Integer numSlides){
         Integer numItemsPorSlide = toPrint.length/numSlides;
         Integer len = toPrint.length;
@@ -45,7 +54,11 @@ public class CalificacionesView {
             String aws = input.nextLine();
             if(aws.compareTo("+")==0)paginaActual = aumentarSlide(numSlides,paginaActual);
             if(aws.compareTo("-")==0)paginaActual = decrementarSlide(numSlides,paginaActual);
-            if(aws.matches("[+-]?\\d*(\\.\\d+)?"))return Integer.parseInt(aws);
+            if(isNumber(aws)){
+                input.close();
+                Integer res = Integer.parseInt(aws);
+                if(res>=0)return res;
+            }
         }
     }
     private String wrap(int len){

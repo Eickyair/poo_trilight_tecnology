@@ -47,8 +47,7 @@ public class Csv {
     public Csv(String pathCsv) {
         this.pathCsv = pathCsv;
     }
-    
-    
+
     public String[] getAllRecords(){
         try {
             ArrayList<String> data = new ArrayList<String>();
@@ -72,7 +71,7 @@ public class Csv {
         }
         return null;
     }
-    
+
     public Boolean elimarRegistro(Integer fila){
         String[] data = getAllRecords();
         System.out.println("num:"+data.length);
@@ -86,5 +85,25 @@ public class Csv {
         pr.close();
         return true;
     }
-    
+
+    public Boolean insertarUnRegistro(String record){
+        String[] cache = getAllRecords();
+        if(cache == null) return false;
+        FileWriter fw = null;
+        BufferedWriter br = null;
+        PrintWriter pw = null;
+        try {
+            fw = writer(pathCsv);
+            br = new BufferedWriter(fw);
+            pw = new PrintWriter(br);
+        } catch (Exception e) {
+            return false;
+        }
+        for(String line:cache){
+            pw.println(line);
+        }
+        pw.println(record);
+        pw.close();
+        return true;
+    }
 }

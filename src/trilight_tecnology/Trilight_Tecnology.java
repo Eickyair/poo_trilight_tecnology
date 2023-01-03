@@ -9,6 +9,7 @@ import trilight_tecnology.controllers.LogAdminControl;
 import trilight_tecnology.views.LimpiarConsola;
 import trilight_tecnology.views.LogAdminView;
 import trilight_tecnology.views.Menu;
+import trilight_tecnology.views.Presentacion;
 
 /**
  *
@@ -21,9 +22,11 @@ public class Trilight_Tecnology {
      */
     public static void main(String[] args) {
         LimpiarConsola limpiador = new LimpiarConsola();
+        // Descomentar las siguientes lineas si es que deseas generar nuevos alumnos
         // Generar x = new Generar("./db/alumnos.csv");
         // x.generarAlumnos("./db/mainAlu.csv");
         limpiador.limpiarTodo();
+        Presentacion.presentacion();
         LogAdminControl logCo = new LogAdminControl();
         LogAdminView logView = new LogAdminView();
         String[] data = logView.getInfoLog();

@@ -16,7 +16,42 @@ public class ReaderConsole {
         }
         return single;
     }
-
+    public void espera(){
+        System.out.println("Presiones Enter para Continuar");
+        input.nextLine();
+    }
+    public RegistroAlumno leerActualizacion(RegistroAlumno old){
+        RegistroAlumno nuevo = new RegistroAlumno();
+        nuevo.apellido = old.apellido;
+        nuevo.nombre = old.nombre;
+        nuevo.idAlumno = old.idAlumno;
+        nuevo.edad = old.edad;
+        nuevo.direccion = old.direccion;
+        int NUM_ATRRS = 3;
+        String[] mensajes = {
+            "Cual es el nuevo Nombre del Alumno?",
+            "Cual es el nuevo Apellido del Alumno?",
+            "Cual es la nueva Dirreccion del Alumno?",
+        };
+        for(int attr = 0;attr<NUM_ATRRS;attr++){
+            System.out.println(mensajes[attr]);
+            System.out.println("Solo de un Enter si es que NO quiere actualizar el valor");
+            String line = input.nextLine();
+            if(line.isEmpty()) continue;
+            switch (attr) {
+                case 0:
+                    nuevo.nombre = line;
+                    break;
+                case 1:
+                    nuevo.apellido = line;
+                    break;
+                case 2:
+                    nuevo.direccion = line;
+                    break;
+            }
+        }
+        return nuevo;
+    }
     public Integer readInteger(){
         String line = input.nextLine();
         Integer result = null;
@@ -38,21 +73,35 @@ public class ReaderConsole {
         };
         for(int attr = 0;attr<NUM_ATRRS;attr++){
             System.out.println(mensajes[attr]);
-            System.out.println("Solo de un Enter si es que quiere dejar el valor indefinido");
+            System.out.println("VALOR REQUERIDO");
             String line = input.nextLine();
-            if(line.isEmpty()) continue;
+            if(line.isEmpty()) return null;
             switch (attr) {
                 case 0:
                     alumno.nombre = line;
                     break;
                 case 1:
                     alumno.apellido = line;
+                    break;
                 case 2:
                     alumno.direccion = line;
+                    break;
                 case 3:
-                    alumno.edad = Integer.parseInt(line);
+                    Integer edad = null;
+                    try {
+                        edad = Integer.parseInt(line);
+                    } catch (Exception e) {
+                        System.out.println("El formato de la edad es invalida");
+                        return null;
+                    }
+                    alumno.edad = edad;
+                    break;
             }
         }
         return alumno;
+    }
+
+    public String readLine(){
+        return input.nextLine();
     }
 }

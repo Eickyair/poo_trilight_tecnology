@@ -6,6 +6,7 @@ package trilight_tecnology.controllers;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -24,7 +25,17 @@ public class Csv {
 
     public Csv() {
     }
-    
+    public String getHeader(){
+        FileReader fr = reader(pathCsv);
+        try (BufferedReader br = new BufferedReader(fr)) {
+            String header = br.readLine();
+            br.close();
+            return header;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
     private FileReader reader(String pathFile){
         FileReader fr=null;
         try {
@@ -47,7 +58,10 @@ public class Csv {
     public Csv(String pathCsv) {
         this.pathCsv = pathCsv;
     }
-
+    public Boolean eliminarAchivo(){
+        File file = new File(pathCsv);
+        return file.delete();
+    }
     public String[] getAllRecords(){
         try {
             ArrayList<String> data = new ArrayList<String>();
@@ -73,11 +87,14 @@ public class Csv {
     }
 
     public Boolean elimarRegistro(Integer fila){
+        String header = getHeader();
+        if(header == null) return false;
         String[] data = getAllRecords();
-        System.out.println("num:"+data.length);
+        if(data==null)return false;
         FileWriter fw = writer("./db/mainAlu.csv");
         BufferedWriter bw = new BufferedWriter(fw);
         PrintWriter pr = new PrintWriter(bw);
+        pr.println(header);
         for (int i = 0; i < data.length; i++){
             if(i==fila)continue;
             pr.println(data[i]);
@@ -87,6 +104,8 @@ public class Csv {
     }
 
     public Boolean insertarUnRegistro(String record){
+        String header = getHeader();
+        if(header == null) return false;
         String[] cache = getAllRecords();
         if(cache == null) return false;
         FileWriter fw = null;
@@ -99,10 +118,39 @@ public class Csv {
         } catch (Exception e) {
             return false;
         }
+        pw.println(header);
         for(String line:cache){
             pw.println(line);
         }
         pw.println(record);
+        pw.close();
+        return true;
+    }
+    public Boolean actualizarUnRegistro(String record, Integer row){
+        String header = getHeader();
+        if(header == null) return false;
+        String[] cache = getAllRecords();
+        if(cache == null) return false;
+        FileWriter fw = null;
+        BufferedWriter br = null;
+        PrintWriter pw = null;
+        try {
+            fw = writer(pathCsv);
+            br = new BufferedWriter(fw);
+            pw = new PrintWriter(br);
+        } catch (Exception e) {
+            return false;
+        }
+        pw.println(header);
+        Integer i = 0;
+        for(String line:cache){
+            if(i==row){
+                pw.println(record);
+            }else{
+                pw.println(line);
+            }
+            i++;
+        }
         pw.close();
         return true;
     }

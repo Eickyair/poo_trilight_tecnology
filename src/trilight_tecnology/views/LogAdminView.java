@@ -5,19 +5,15 @@
 package trilight_tecnology.views;
 
 import java.util.Scanner;
-import java.util.StringTokenizer;
-import trilight_tecnology.controllers.Csv;
-
 /**
  *
  * @author Anvil
  */
 public class LogAdminView {
-    
     /**
      * Captura de la informacion necesaria
      * para loggearte como admin
-     * @return Array con contrasenia y usuario 
+     * @return Array con contrasenia y usuario
      */
     public String[] getInfoLog(){
         String[] data = new String[2];

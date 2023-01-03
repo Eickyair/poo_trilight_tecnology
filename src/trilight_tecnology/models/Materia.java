@@ -4,10 +4,13 @@
  */
 package trilight_tecnology.models;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 
+import javax.print.DocFlavor.STRING;
+
 import trilight_tecnology.controllers.Casteador;
+import trilight_tecnology.views.Fila;
+import trilight_tecnology.views.Tabla;
 
 /**
  *
@@ -38,7 +41,12 @@ public class Materia implements ToList,Registrable{
 
     @Override
     public ArrayList<String> toListStrings() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        ArrayList<String> values=new ArrayList<String>();
+        values.add(clave.toString());
+        values.add(nombre);
+        values.add(creditos.toString());
+        values.add(calificacion.toString());
+        return values;
     }
 
     @Override
@@ -51,6 +59,27 @@ public class Materia implements ToList,Registrable{
         record+=cast.notNullString(this.semestre)+",";
         record+=cast.notNullString(this.calificacion);
         return record;
+    }
+
+    public void mostrarMateriaComoFila(){
+        Tabla tabla = new Tabla();
+        ArrayList<String> values = toListStrings();
+        ArrayList<Integer> lens = toListIntegers();
+        Fila fila = new Fila();
+        fila.values = values;
+        fila.lens = lens;
+        fila.top = tabla.separar(lens, "+");
+        fila.showRow(true, false);
+    }
+
+    @Override
+    public ArrayList<Integer> toListIntegers() {
+        ArrayList<Integer> lens = new ArrayList<Integer>();
+        lens.add(10);
+        lens.add(50);
+        lens.add(10);
+        lens.add(15);
+        return lens;
     }
 
 }

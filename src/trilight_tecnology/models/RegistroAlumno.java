@@ -2,6 +2,8 @@ package trilight_tecnology.models;
 
 import java.util.ArrayList;
 
+import trilight_tecnology.controllers.Casteador;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -24,7 +26,6 @@ public class RegistroAlumno implements Registrable,ToList {
      * y sumarle 1 a ese valor
      */
     public Integer semestreEnCurso;
-
     public RegistroAlumno() {
     }
     /**
@@ -33,7 +34,7 @@ public class RegistroAlumno implements Registrable,ToList {
      * @param nombre Nombre del alumno
      * @param apellido Apellido del alumno
      * @param direccion Direccion en donde habita el alumno
-     * @param edad 
+     * @param edad
      */
     public RegistroAlumno(Integer idAlumno, String nombre, String apellido, String direccion, Integer edad) {
         this.idAlumno = idAlumno;
@@ -52,14 +53,19 @@ public class RegistroAlumno implements Registrable,ToList {
     @Override
     public String recordDb() {
         String record;
-        record = ""+idAlumno+","+nombre+","+apellido+","+direccion+","+edad;
+        Casteador cast = new Casteador();
+        record = "";
+        record+=cast.notNullString(idAlumno)+",";
+        record+=cast.notNullString(nombre)+",";
+        record+=cast.notNullString(apellido)+",";
+        record+=cast.notNullString(direccion)+",";
+        record+=cast.notNullString(edad);
         return record;
     }
 
     @Override
     public String toString() {
-        String s = ""+idAlumno+"\t"+nombre+"\t"+apellido+"\t"+direccion+"\t"+edad;
-        return s;
+        return recordDb();
     }
 
     @Override
@@ -71,6 +77,13 @@ public class RegistroAlumno implements Registrable,ToList {
         a.add(edad.toString());
         return a;
     }
-     
-     
+    @Override
+    public ArrayList<Integer> toListIntegers() {
+        ArrayList<Integer> a = new ArrayList<Integer>();
+        a.add(10);
+        a.add(15);
+        a.add(20);
+        a.add(8);
+        return a;
+    }
 }

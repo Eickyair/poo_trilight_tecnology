@@ -21,7 +21,11 @@ public class DbHistorialAcademico {
 
     public DbHistorialAcademico() {
     }
-    
+    public Boolean eliminarHistorial(Integer idAlumno){
+        String rutaArchivo = pathDbHistoriales+idAlumno+".csv";
+        Csv csv = new Csv(rutaArchivo);
+        return csv.eliminarAchivo();
+    }
     public HistorialAcademico consultarHistorial(Integer idAlumno){
         HistorialAcademico consulta = null;
         String rutaArchivo = pathDbHistoriales+idAlumno+".csv";
@@ -31,7 +35,7 @@ public class DbHistorialAcademico {
         consulta.idAlumno = idAlumno;
         return consulta;
     }
-    
+
     public HistorialAcademico convertirHistorial(String[] informacion){
         HistorialAcademico h = new HistorialAcademico();
         //En el indice 0 esta la cabecera o header

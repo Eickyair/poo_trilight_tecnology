@@ -18,13 +18,11 @@ public class HistorialAcademico {
     public Integer semestreActual;
     public HistorialAcademico() {
     }
-    
-     
+
     public HistorialAcademico(Integer idAlumno, double promedio, Hashtable<Integer, Semestre> semestres) {
         this.idAlumno = idAlumno;
         this.promedio = promedio;
         this.semestres = semestres;
     }
-    
     
 }

@@ -4,7 +4,6 @@
  */
 package trilight_tecnology.views;
 
-import java.util.Scanner;
 
 /**
  *
@@ -14,6 +13,15 @@ public class Menu {
     private String[] op;
     private String titulo=null;
     public Menu() {
+    }
+    public void status(Boolean status){
+        ReaderConsole lector = ReaderConsole.getInstance();
+        if(status){
+            System.out.println("OPERACION REALIZADA CORRECTAMENTE");
+        }else{
+            System.out.println("HUBO UN ERROR");
+        }
+        lector.espera();
     }
     public void mostraTitulo(){
         if(titulo == null) return;

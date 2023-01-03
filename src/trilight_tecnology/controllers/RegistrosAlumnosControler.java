@@ -4,7 +4,8 @@
  */
 package trilight_tecnology.controllers;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+
 
 import trilight_tecnology.models.RegistroAlumno;
 import trilight_tecnology.views.RegistrosAlumnosView;
@@ -14,60 +15,63 @@ import trilight_tecnology.views.RegistrosAlumnosView;
  * @author Anvil
  */
 public class RegistrosAlumnosControler {
-    private RegistroAlumno[] alumnos  = null;
-    private RegistroAlumno alumno;
-
     public RegistrosAlumnosControler(){
-        Csv  csv = new Csv("./db/mainAlu.csv");
-        String[] todosLosRegistros = csv.getAllRecords();
-        Casteador cast = new Casteador();
-        alumnos = new RegistroAlumno[todosLosRegistros.length];
-        for (int i = 0; i < alumnos.length; i++) {
-            alumno = cast.castRegistroAlumno(todosLosRegistros[i]);
-            alumnos[i] = alumno;
+    }
+
+    public ArrayList<RegistroAlumno> getAlumnos(){
+        Csv csv = new Csv("./db/mainAlu.csv");
+        String[] infos = csv.getAllRecords();
+        RegistroAlumno alumno = null;
+        ArrayList<RegistroAlumno> alumnos = new ArrayList<RegistroAlumno>();
+        Casteador casteador = new Casteador();
+        for(String info : infos){
+            alumno = casteador.castRegistroAlumno(info);
+            alumnos.add(alumno);
         }
+        return alumnos;
     }
-    public void ordenarPorNombre(){
-        Arrays.sort(alumnos,(first,second) -> {
-            if(first.nombre.compareTo(second.nombre)<0) return -1;
-            return 1;
-        });
-    }
-    public void mostrarAlumnos(){
-        RegistrosAlumnosView view = new RegistrosAlumnosView(alumnos);
-        view.mostrarEnSlides(20);
-    }
+
+
 
     public Boolean borrarAlumno(Integer id){
         Csv csv = new Csv("./db/mainAlu.csv");
         String[] data = csv.getAllRecords();
         Casteador caster = new Casteador();
+        RegistroAlumno alumno = null;
         for (int i = 0; i < data.length; i++) {
             alumno = caster.castRegistroAlumno(data[i]);
-            if(alumno.idAlumno == id){
-               return csv.elimarRegistro(i);
+            if(alumno.idAlumno.intValue() == id.intValue()){
+                Boolean res = csv.elimarRegistro(i);
+                return res;
             }
         }
         return false;
     }
-    public RegistroAlumno busqueda(Integer idAlumno){
-        Csv csv = new Csv("./db/mainAlu.csv");
-        String[] alumnos = csv.getAllRecords();
-        Casteador cast = new Casteador();
-        for (int renglon = 0; renglon < alumnos.length; renglon++) {
-            alumno = cast.castRegistroAlumno(alumnos[renglon]);
-            if(alumno.idAlumno==idAlumno)return alumno;
-        }
-        return null;
-    }
 
     public Boolean guardarAlumno(RegistroAlumno alumno){
         Csv csv = new Csv("./db/mainAlu.csv");
+        Generar generar = new Generar("./db/alumnos.csv");
+        alumno.idAlumno = Generar.getAutoID();
+        Generar.setAutoID(alumno.idAlumno+1);
+
+        Boolean res = generar.generarUnHistorial(alumno.idAlumno, alumno.edad);
+        if(res==false)return false;
         String record = alumno.recordDb();
         return csv.insertarUnRegistro(record);
     }
     public Boolean actualizarAlumno(RegistroAlumno nuevo){
-        borrarAlumno(nuevo.idAlumno);
-        return guardarAlumno(nuevo);
+        Csv csv = new Csv("./db/mainAlu.csv");
+        String[] records = csv.getAllRecords();
+        RegistroAlumno alumno = null;
+        Casteador casteador = new Casteador();
+        for(Integer row=0;row<records.length;row++){
+            alumno = casteador.castRegistroAlumno(records[row]);
+            if(alumno.idAlumno.intValue()==nuevo.idAlumno.intValue()){
+                String record = nuevo.recordDb();
+                Boolean res = csv.actualizarUnRegistro(record,row);
+                return res;
+            }
+        }
+        return false;
     }
 }

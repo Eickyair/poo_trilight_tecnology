@@ -10,12 +10,12 @@ import java.util.ArrayList;
  *
  * @author Anvil
  */
-public class Fila extends Tabla{
-    public  String top;
-    public  String bottom;
-    public  ArrayList<String> values;
-    public  ArrayList<Integer> lens;
-    public  String[] formats;
+public class Fila extends Tabla {
+    public String top;
+    public String bottom;
+    public ArrayList<String> values;
+    public ArrayList<Integer> lens;
+    private String[] formats;
 
     public Fila() {
     }
@@ -27,7 +27,7 @@ public class Fila extends Tabla{
         this.bottom = this.top;
         initFormat();
     }
-     
+
     public Fila(String top, String bottom, ArrayList<String> values, ArrayList<Integer> lens) {
         this.top = top;
         this.bottom = bottom;
@@ -36,22 +36,32 @@ public class Fila extends Tabla{
         this.formats = new String[values.size()];
         initFormat();
     }
-    public void initFormat(){
+
+    private void initFormat() {
         this.formats = new String[lens.size()];
         for (int i = 0; i < lens.size(); i++) {
-            formats[i]=wrap(lens.get(i));
+            formats[i] = wrap(lens.get(i));
         }
     }
-    public void showFormat(){
+
+    private void showFormat() {
+        if (lens == null) {
+            System.out.println("-------------------------------");
+            return;
+        }
+        if(formats==null)initFormat();
         System.out.print("|");
         for (int i = 0; i < values.size(); i++) {
             System.out.format(formats[i], values.get(i));
         }
         System.out.print("\n");
     }
-    public void showRow(Boolean mostrarTop, Boolean mostrarBottom){
-        if(mostrarTop) System.out.println(top);
+
+    public void showRow(Boolean mostrarTop, Boolean mostrarBottom) {
+        if (mostrarTop)
+            System.out.println(top);
         showFormat();
-        if(mostrarBottom)System.out.println(bottom);
+        if (mostrarBottom)
+            System.out.println(bottom);
     }
 }

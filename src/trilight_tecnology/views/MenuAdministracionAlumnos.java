@@ -4,8 +4,12 @@
  */
 package trilight_tecnology.views;
 
-import java.util.Scanner;
+import java.util.ArrayList;
+
 import trilight_tecnology.controllers.RegistrosAlumnosControler;
+import trilight_tecnology.models.DbHistorialAcademico;
+import trilight_tecnology.models.HistorialAcademico;
+import trilight_tecnology.models.RegistroAlumno;
 
 /**
  *
@@ -28,20 +32,75 @@ public class MenuAdministracionAlumnos extends Menu{
         Integer op = leerOpcion();
         switch (op) {
             case 1:
-                // Crear Alumno
+                casoUno();
                 break;
             case 2:
-                // Consultar un alumno
+                casoDos();
                 break;
-            case 3:
-                // Actualizar un alumno
+                case 3:
+                casoTres();
                 break;
             case 4:
-                // Eliminar un alumno
+                casoCuatro();
                 break;
             case 5:
                 return false;
         }
         return true;
+    }
+    public void casoUno(){
+        ReaderConsole lector = ReaderConsole.getInstance();
+        RegistrosAlumnosControler registrosAlumnosControler = new RegistrosAlumnosControler();
+        RegistroAlumno alumno = new RegistroAlumno();
+        alumno = lector.leerUnRegistroAlumno();
+        if(alumno==null){
+            status(false);
+            return;
+        }
+        Boolean res = registrosAlumnosControler.guardarAlumno(alumno);
+        status(res);
+    }
+    public void casoDos(){
+        ReaderConsole lector = ReaderConsole.getInstance();
+        RegistrosAlumnosControler registrosAlumnosControler = new RegistrosAlumnosControler();
+        ArrayList<RegistroAlumno> alumnos = registrosAlumnosControler.getAlumnos();
+        RegistrosAlumnosView registrosAlumnosView = new RegistrosAlumnosView(alumnos);
+        Integer index = registrosAlumnosView.mostrarEnSlides(10);
+        RegistroAlumno alumno = alumnos.get(index);
+        DbHistorialAcademico dbHistorialAcademico = new DbHistorialAcademico();
+        HistorialAcademico historialAcademico = dbHistorialAcademico.consultarHistorial(alumno.idAlumno);
+        HistorialAcademicoView historialAcademicoView = new HistorialAcademicoView(historialAcademico);
+        historialAcademicoView.mostraEnConsola(alumno);
+        lector.espera();
+    }
+    public void casoTres(){
+        RegistrosAlumnosControler registrosAlumnosControler = new RegistrosAlumnosControler();
+        ArrayList<RegistroAlumno> alumnos = registrosAlumnosControler.getAlumnos();
+        RegistrosAlumnosView registrosAlumnosView = new RegistrosAlumnosView(alumnos);
+        Integer index = registrosAlumnosView.mostrarEnSlides(10);
+        RegistroAlumno alumno = alumnos.get(index);
+        ReaderConsole lector = ReaderConsole.getInstance();
+        RegistroAlumno update = lector.leerActualizacion(alumno);
+        Boolean res = registrosAlumnosControler.actualizarAlumno(update);
+        status(res);
+    }
+    public void casoCuatro(){
+        RegistrosAlumnosControler registrosAlumnosControler = new RegistrosAlumnosControler();
+        DbHistorialAcademico dbHistorialAcademico = new DbHistorialAcademico();
+        ArrayList<RegistroAlumno> alumnos = registrosAlumnosControler.getAlumnos();
+        RegistrosAlumnosView registrosAlumnosView = new RegistrosAlumnosView(alumnos);
+        Integer index = registrosAlumnosView.mostrarEnSlides(10);
+        RegistroAlumno alumno = alumnos.get(index);
+        Boolean res = registrosAlumnosControler.borrarAlumno(alumno.idAlumno);
+        if(res==false){
+            status(res);
+            return;
+        }
+        res = dbHistorialAcademico.eliminarHistorial(alumno.idAlumno);
+        if(res==false){
+            status(res);
+            return;
+        }
+        status(res);
     }
 }

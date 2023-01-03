@@ -12,4 +12,5 @@ import java.util.ArrayList;
  */
 public interface ToList {
     public ArrayList<String> toListStrings();
+    public ArrayList<Integer> toListIntegers();
 }

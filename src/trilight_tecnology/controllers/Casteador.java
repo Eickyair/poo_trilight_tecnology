@@ -17,6 +17,15 @@ public class Casteador {
         if(o==null)return "/";
         return o.toString();
     }
+    public Integer castIntegerString(String input){
+        Integer res = null;
+        try {
+            res = Integer.parseInt(input);
+        } catch (Exception e) {
+            return null;
+        }
+        return res;
+    }
     /**
      * Coversion de un registro en Csv de un alumno
      * a un objeto tipo RegistroAlumno.

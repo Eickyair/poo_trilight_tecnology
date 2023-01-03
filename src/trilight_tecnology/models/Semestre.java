@@ -60,7 +60,11 @@ public class Semestre extends Tabla{
         header.add("SEMESTRE");
         header.add("NUMERO: "+numero.toString());
         header.add(contarCreditosSemestre().toString());
-        header.add(promedioPorSemestre().toString());
+        Double promedio = promedioPorSemestre();
+        String str = promedio.toString();
+        Integer top = Math.min(str.indexOf(".")+3, str.length());
+        str = str.substring(0,top);
+        header.add(str);
         fila.values = header;
         fila.showRow(true, false);
 

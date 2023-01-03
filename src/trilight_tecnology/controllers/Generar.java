@@ -204,11 +204,12 @@ public class Generar {
                     data += (tok.nextToken() + ",");
                 }
                 data += (semestre + ",");
-                double calf = Math.random() * 4.0 + 6.0;
-                data += calf;
+                Double calf = Math.random() * 4.0 + 6.0;
+                String str = calf.toString();
+                data+=str.substring(0,str.indexOf(".")+3);
                 pw.println(data);
             }
-            if (materiaReprobada != null) {
+            if (materiaReprobada != null && semestre.intValue()!=minSemestre.intValue()) {
                 StringTokenizer tok = new StringTokenizer(materiaReprobada, ",");
                 String data = "";
                 for (int k = 0; k < 3; k++) {
@@ -216,8 +217,9 @@ public class Generar {
                 }
                 Integer local = semestre + 1;
                 data += (local + ",");
-                double calf = Math.random() * 4.0 + 6.0;
-                data += calf;
+                Double calf = Math.random() * 4.0 + 6.0;
+                String str = calf.toString();
+                data+=str.substring(0,str.indexOf(".")+3);
                 pw.println(data);
                 materiaReprobada = null;
             }

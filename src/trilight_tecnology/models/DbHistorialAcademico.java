@@ -7,6 +7,7 @@ package trilight_tecnology.models;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import trilight_tecnology.controllers.Csv;
+import trilight_tecnology.controllers.RegistrosAlumnosControler;
 
 
 
@@ -21,18 +22,31 @@ public class DbHistorialAcademico {
 
     public DbHistorialAcademico() {
     }
+    public HistorialAcademico historialPerfecto(){
+        Csv csv = new Csv("./db/semestres.csv");
+        String[] planEstudios = csv.getAllRecords();
+        for(Integer i = 0;i<planEstudios.length;i++){
+            planEstudios[i]+=",-1.00";
+        }
+        HistorialAcademico historial = convertirHistorial(planEstudios);
+        return historial;
+    }
     public Boolean eliminarHistorial(Integer idAlumno){
         String rutaArchivo = pathDbHistoriales+idAlumno+".csv";
         Csv csv = new Csv(rutaArchivo);
         return csv.eliminarAchivo();
     }
     public HistorialAcademico consultarHistorial(Integer idAlumno){
+
         HistorialAcademico consulta = null;
         String rutaArchivo = pathDbHistoriales+idAlumno+".csv";
         Csv csv = new Csv(rutaArchivo);
         String[] informacionConvertir = csv.getAllRecords();
         consulta = convertirHistorial(informacionConvertir);
         consulta.idAlumno = idAlumno;
+        RegistrosAlumnosControler registrosAlumnosControler = new RegistrosAlumnosControler();
+        RegistroAlumno alumno = registrosAlumnosControler.getAlumno(idAlumno);
+        consulta.semestreActual = alumno.edad-17+1;
         return consulta;
     }
 
@@ -47,7 +61,7 @@ public class DbHistorialAcademico {
         Double suma = 0d;
         Integer numMaterias = 0;
         DbMateria dbMateria = new DbMateria();
-        for (int i = 1; i < informacion.length; i++) {
+        for (int i = 0; i < informacion.length; i++) {
             String rec = informacion[i];
             materia = dbMateria.casteo(rec);
             numSemestre = materia.semestre;
@@ -60,7 +74,6 @@ public class DbHistorialAcademico {
             suma+=materia.calificacion;
             numMaterias++;
         }
-        h.semestreActual = Math.min(10, numSemestre+1);
         h.semestres = historial;
         h.promedio = suma/numMaterias;
         return h;

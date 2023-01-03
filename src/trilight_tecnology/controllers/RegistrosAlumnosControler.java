@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 
 import trilight_tecnology.models.RegistroAlumno;
-import trilight_tecnology.views.RegistrosAlumnosView;
 
 /**
  * CRUD de los alumnos
@@ -47,7 +46,15 @@ public class RegistrosAlumnosControler {
         }
         return false;
     }
-
+    public RegistroAlumno getAlumno(Integer id){
+        ArrayList<RegistroAlumno> alumnos = getAlumnos();
+        for(RegistroAlumno alumno : alumnos){
+            if(alumno.idAlumno.intValue()==id.intValue()){
+                return alumno;
+            }
+        }
+        return null;
+    }
     public Boolean guardarAlumno(RegistroAlumno alumno){
         Csv csv = new Csv("./db/mainAlu.csv");
         Generar generar = new Generar("./db/alumnos.csv");

@@ -21,8 +21,8 @@ public class Trilight_Tecnology {
      */
     public static void main(String[] args) {
         LimpiarConsola limpiador = new LimpiarConsola();
-        Generar x = new Generar("./db/alumnos.csv");
-        x.generarAlumnos("./db/mainAlu.csv");
+        // Generar x = new Generar("./db/alumnos.csv");
+        // x.generarAlumnos("./db/mainAlu.csv");
         limpiador.limpiarTodo();
         LogAdminControl logCo = new LogAdminControl();
         LogAdminView logView = new LogAdminView();

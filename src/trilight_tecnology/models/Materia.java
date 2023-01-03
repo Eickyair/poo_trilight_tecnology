@@ -6,7 +6,7 @@ package trilight_tecnology.models;
 
 import java.util.ArrayList;
 
-import javax.print.DocFlavor.STRING;
+
 
 import trilight_tecnology.controllers.Casteador;
 import trilight_tecnology.views.Fila;
@@ -72,6 +72,18 @@ public class Materia implements ToList,Registrable{
         fila.showRow(true, false);
     }
 
+    public void mostrarMateriaComoFila(Boolean actualizar){
+        Tabla tabla = new Tabla();
+        ArrayList<String> values = toListStrings();
+        values.remove(3);
+        values.add("NAN");
+        ArrayList<Integer> lens = toListIntegers();
+        Fila fila = new Fila();
+        fila.values = values;
+        fila.lens = lens;
+        fila.top = tabla.separar(lens, "+");
+        fila.showRow(true, false);
+    }
     @Override
     public ArrayList<Integer> toListIntegers() {
         ArrayList<Integer> lens = new ArrayList<Integer>();

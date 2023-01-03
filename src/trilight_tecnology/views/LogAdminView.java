@@ -4,7 +4,7 @@
  */
 package trilight_tecnology.views;
 
-import java.util.Scanner;
+
 /**
  *
  * @author Anvil
@@ -18,12 +18,12 @@ public class LogAdminView {
     public String[] getInfoLog(){
         String[] data = new String[2];
         //Variables para el USUARIO
-        Scanner input = new Scanner(System.in);
+        ReaderConsole lReaderConsole = ReaderConsole.getInstance();
         String usuario, contrasenia;
         System.out.println("Ingresa el correo:");
-        usuario = input.nextLine();
+        usuario = lReaderConsole.readLine();
         System.out.println("Ingresar la contrasenia");
-        contrasenia = input.nextLine();
+        contrasenia = lReaderConsole.readLine();
         data[0] = usuario; data[1] = contrasenia;
         return data;
     }

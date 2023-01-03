@@ -6,7 +6,6 @@ package trilight_tecnology.views;
 
 import java.util.ArrayList;
 
-import trilight_tecnology.models.RegistroAlumno;
 
 /**
  *

@@ -30,7 +30,12 @@ public class HistorialAcademicoView extends Tabla{
             System.out.println();
         }
     }
-
+    public void mostraEnConsola(){
+        for(Semestre semestre : h.semestres.values()){
+            semestre.mostrarComoTabla();
+            System.out.println();
+        }
+    }
     public ArrayList<String> initHeader(){
         ArrayList<String> header = new ArrayList<String>();
         header.add("ID_ALU");

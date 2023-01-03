@@ -10,6 +10,17 @@ public class ReaderConsole {
     private ReaderConsole(){
         input = new Scanner(System.in);
     }
+    public Double readCalif(){
+        String line = input.nextLine();
+        Double calf = null;
+        try {
+            calf = Double.parseDouble(line);
+        } catch (Exception e) {
+            return null;
+        }
+        if(calf.doubleValue()<0 || calf.doubleValue()>10)return null;
+        return calf;
+    }
     public static ReaderConsole getInstance(){
         if(single == null){
             return new ReaderConsole();

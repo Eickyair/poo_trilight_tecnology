@@ -22,4 +22,10 @@ public class MenuNumInscripccion extends Menu {
         }
         return true;
     }
+    private void casoUno(){
+
+    }
+    private void casoDos(){
+        
+    }
 }

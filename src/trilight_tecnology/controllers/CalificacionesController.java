@@ -4,46 +4,39 @@
  */
 package trilight_tecnology.controllers;
 
-import java.util.StringTokenizer;
+import java.util.ArrayList;
+
 import trilight_tecnology.models.Materia;
-import trilight_tecnology.views.CalificacionesView;
 
 /**
  * CRUD de las calificaciones
  * @author chaia
  */
 public class CalificacionesController {
-    private Materia[] calificaciones = null;
-    private Materia prom;
-    
-    public CalificacionesController(){
-        Csv  csv = new Csv("./db/mainAlu.csv");
-        String[] todosLosRegistros = csv.getAllRecords();
-        calificaciones = new Materia[todosLosRegistros.length];
-        for (int i = 0; i < calificaciones.length; i++) {
-            parseMateria(todosLosRegistros[i]);
-            calificaciones[i] = prom;
+    public CalificacionesController(){}
+    public Boolean guardarMateria(Materia toSave,Integer idAlumno){
+        Csv csv = new Csv("./db/registros/"+idAlumno.toString()+".csv");
+        String record = toSave.recordDb();
+        return csv.insertarUnRegistro(record);
+    }
+
+    public Materia buscarMateriaEnArray(ArrayList<Materia> materias,Integer clave){
+        for(Materia materia : materias){
+            if(materia.clave.intValue() == clave.intValue())return materia;
         }
+        return null;
     }
-    
-    public void mostrarCalificaciones(){
-        CalificacionesView view = new CalificacionesView(calificaciones);
-        view.mostrarEnSlides(20);
-    }
-    
-    private void parseMateria(String rec){
-        prom = new Materia();
-        int i=0;
-        StringTokenizer tok = new StringTokenizer(rec,",");
-        while(tok.hasMoreElements()){
-            switch (i) {
-                case 0 -> prom.clave = Integer.valueOf(tok.nextToken());
-                case 1 -> prom.nombre = tok.nextToken();
-                case 2 -> prom.creditos = Integer.valueOf(tok.nextToken());
-                case 3 -> prom.semestre = Integer.valueOf(tok.nextToken());
-                case 4 -> prom.calificacion = Integer.parseInt(tok.nextToken());
+    public Boolean actualizarMateria(Materia nuevo,Integer idAlumno){
+        Csv csv = new Csv("./db/registros/"+idAlumno.toString()+".csv");
+        String[] records = csv.getAllRecords();
+        Materia materia = null;
+        Casteador casteador = new Casteador();
+        for (int i = 0; i < records.length; i++) {
+            materia = casteador.castMateria(records[i]);
+            if(materia.clave.intValue()==nuevo.clave.intValue()){
+                return csv.actualizarUnRegistro(nuevo.recordDb(),i);
             }
-            i++;
         }
+        return false;
     }
 }

@@ -14,7 +14,7 @@ import trilight_tecnology.controllers.RegistrosAlumnosControler;
 
 
 /**
- *
+ * Clase encargada de hacer consultas de informacion sobre los historiales
  * @author Anvil
  */
 public class DbHistorialAcademico {
@@ -22,6 +22,11 @@ public class DbHistorialAcademico {
 
     public DbHistorialAcademico() {
     }
+    /**
+     * Determinacion del historial de referencia
+     * a la hora de calcular numeros de inscripcion
+     * @return HistorialAcademico ordinario
+     */
     public HistorialAcademico historialPerfecto(){
         Csv csv = new Csv("./db/semestres.csv");
         String[] planEstudios = csv.getAllRecords();
@@ -31,11 +36,21 @@ public class DbHistorialAcademico {
         HistorialAcademico historial = convertirHistorial(planEstudios);
         return historial;
     }
+    /**
+     * Eliminacion del archivo con el historial de un alumno
+     * @param idAlumno Alumno al que sera eliminado el historial
+     * @return Status de la operacion
+     */
     public Boolean eliminarHistorial(Integer idAlumno){
         String rutaArchivo = pathDbHistoriales+idAlumno+".csv";
         Csv csv = new Csv(rutaArchivo);
         return csv.eliminarAchivo();
     }
+    /**
+     * Consulta la informacion del historial de un alumno
+     * @param idAlumno Alumno al que se le hace la consulta
+     * @return Historial academico asociado al alumno
+     */
     public HistorialAcademico consultarHistorial(Integer idAlumno){
 
         HistorialAcademico consulta = null;
@@ -49,7 +64,12 @@ public class DbHistorialAcademico {
         consulta.semestreActual = alumno.edad-17+1;
         return consulta;
     }
-
+    /**
+     * Parseador de informacion en texto plano del archivo donde
+     * se guarda el historial de un alumno
+     * @param informacion informacion del archivo csv
+     * @return Objeto historial academico construido a partir de esa informacion
+     */
     public HistorialAcademico convertirHistorial(String[] informacion){
         HistorialAcademico h = new HistorialAcademico();
         //En el indice 0 esta la cabecera o header

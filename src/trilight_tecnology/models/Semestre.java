@@ -10,22 +10,36 @@ import trilight_tecnology.views.Fila;
 import trilight_tecnology.views.Tabla;
 
 /**
- *
+ * Clase encargada de empaquetar la informacion de un semestre
  * @author Milanesus
  */
 public class Semestre extends Tabla{
     public Integer numero;
     public ArrayList<Materia> materias;
+    /**
+     * Constructor vacio
+     */
     public Semestre(){
     }
+    /**
+     * Inicilazacion del objeto
+     * @param numero Numero del semestre
+     * @param materias Materias que se cursaron este semestre
+     */
     public Semestre(Integer numero, ArrayList<Materia> materias) {
         this.numero = numero;
         this.materias = materias;
     }
-
+    /**
+     * Calculo de las materias cursadas
+     * @return numero de materias cursadas
+     */
     public Integer numMaterias(){
         return materias.size();
     }
+    /**
+     * Despligue de el semestre como una tabla
+     */
     public void mostrarComoTabla(){
         mostrarHeaderTabla();
         for(Materia materia : materias){
@@ -33,6 +47,11 @@ public class Semestre extends Tabla{
         }
         System.out.println(separar(materias.get(0).toListIntegers(), "+"));
     }
+    /**
+     * Contabilizacion de los creditos sumados por
+     * todas las materias cursadas en el semestre
+     * @return Numero de creditos obtenidos
+     */
     public Integer contarCreditosSemestre(){
         Integer creditosSemestre = 0;
         for(Materia materia : this.materias){
@@ -40,6 +59,10 @@ public class Semestre extends Tabla{
         }
         return creditosSemestre;
     }
+    /**
+     * Promedio del semestre
+     * @return promedio
+     */
     public Double promedioPorSemestre(){
         Double suma = 0d;
         for(Materia materia:this.materias){
@@ -47,6 +70,9 @@ public class Semestre extends Tabla{
         }
         return suma/this.numMaterias();
     }
+    /**
+     * Cabecera de la tabla del semestre
+     */
     private void mostrarHeaderTabla(){
         ArrayList<Integer> lens = new ArrayList<Integer>();
         lens.add(10);

@@ -4,7 +4,10 @@ import java.util.StringTokenizer;
 
 import trilight_tecnology.models.Materia;
 import trilight_tecnology.models.RegistroAlumno;
-
+/**
+ * Cast de informacion en texto de varios objetos del sistema
+ * @author Anvil
+ */
 public class Casteador {
     private String nullToken = "/";
     /**

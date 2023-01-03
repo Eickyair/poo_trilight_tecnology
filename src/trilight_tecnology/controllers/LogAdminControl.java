@@ -7,14 +7,15 @@ package trilight_tecnology.controllers;
 import java.util.StringTokenizer;
 
 /**
- *
+ * Contralador de el inicio de sesion de un admin
  * @author Anvil
  */
 public class LogAdminControl {
-
+    /**
+     * Constructor vacio
+     */
     public LogAdminControl() {
     }
-    
     /**
      * Busqueda en la base de datos de los administradores
      * si existe el correo y contrasenia recibidos
@@ -37,7 +38,7 @@ public class LogAdminControl {
         }
         return false;
     }
-    
+
     /**
      * Extraccion de el token que representa el
      * correo del admin en el registro

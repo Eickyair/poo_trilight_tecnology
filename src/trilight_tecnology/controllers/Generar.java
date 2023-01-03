@@ -13,7 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * Clase encargada de la generacion de alumnos
  * @author Anvil
  */
 public class Generar {
@@ -23,12 +23,9 @@ public class Generar {
     private HashMap<Integer, ArrayList<String>> mapSemestres = null;
     public static Integer autoID = 5001;
     /**
-     * Este metedo solo se ejecuta una vez con el
-     * attr single
-     * 
-     * @param pathDbSrcAlu ruta del archivo que
-     *                     funciona como fuente principal para extraer
-     *                     registros de manera aleatoria
+     * Constructor der generador de alumnos
+     * @param pathDbSrcAlu informacion de la cual consumir para generar los
+     * registros
      */
     public Generar(String pathDbSrcAlu) {
         this.pathDbSrcAlu = pathDbSrcAlu;
@@ -36,9 +33,17 @@ public class Generar {
         this.semestres = csv.getAllRecords();
         this.mapSemestres = mapaSemestres(this.semestres);
     }
+    /**
+     * Obtencion de el idAutomatico para un nuevo registro
+     * @return id
+     */
     public static Integer getAutoID() {
         return autoID;
     }
+    /**
+     * Actualizacion del id
+     * @param autoID nuevo auto id
+     */
     public static void setAutoID(Integer autoID) {
         Generar.autoID = autoID;
     }
@@ -46,10 +51,9 @@ public class Generar {
      * Dado un registro en formato csv de alumno
      * se extrae el token que representa la edad
      * y se castea a Integer
-     * 
      * @param rec Registro de un alumno en formato csv
-     *            con la siguiente estructura:
-     *            id,nombre,apellido,direccion,edad
+     * con la siguiente estructura:
+     * id,nombre,apellido,direccion,edad
      * @return Valor del edad que posee este alumno
      */
     private Integer getEdad(String rec) {
@@ -71,10 +75,9 @@ public class Generar {
      * Metodo que selecciona 500 registros
      * aleatorios del archivo pathDbSrcAlu
      * para ser reescritos en pathDbAlumnos
-     * 
      * @param pathDbAlumnos Ruta donde se van a
-     *                      escribir los 500 alumnos seleccionados
-     *                      aleatoriamente
+     * escribir los 500 alumnos seleccionados
+     * aleatoriamente
      */
     public void generarAlumnos(String pathDbAlumnos) {
         Csv csv = new Csv(pathDbSrcAlu);
@@ -117,12 +120,11 @@ public class Generar {
     /**
      * Conversion de un array de Strings que
      * posee la informacion de las materias de cada semestre
-     * 
      * @param semestres combinacion de todas las materias
-     *                  que posee cada semestre
+     * que posee cada semestre
      * @return mapa que tiene como llave el numero del
-     *         semestre y como valor un array con todas las materias
-     *         de este semestre
+     * semestre y como valor un array con todas las materias
+     * de este semestre
      */
     private HashMap<Integer, ArrayList<String>> mapaSemestres(String[] semestres) {
         HashMap<Integer, ArrayList<String>> map = new HashMap<Integer, ArrayList<String>>();
@@ -147,12 +149,11 @@ public class Generar {
 
     /**
      * Generacion de un historial para cada id
-     * 
      * @param pathDbHistoriales directiorio donde se
-     *                          van a escribir las historiales
-     * @param ids               conjunto de ids de los alumnos
-     * @param edades            edad de cada alumno, en base a la edad
-     *                          se calcula el semestre que cursa el alumno
+     * van a escribir las historiales
+     * @param ids conjunto de ids de los alumnos
+     * @param edades edad de cada alumno, en base a la edad
+     * se calcula el semestre que cursa el alumno
      */
     private void generarHistoriales(String pathDbHistoriales, ArrayList<Integer> ids, ArrayList<Integer> edades) {
         File carpeta = new File("./db/registros");
@@ -169,7 +170,12 @@ public class Generar {
             if(res == false)i--;
         }
     }
-
+    /**
+     * Generacion de todo un historial para un alumno
+     * @param id del alumno al que pertenece el historial
+     * @param edad la edad del alumno
+     * @return status de la operacion
+     */
     public Boolean generarUnHistorial(Integer id, Integer edad) {
         FileWriter fw;
         BufferedWriter bw;

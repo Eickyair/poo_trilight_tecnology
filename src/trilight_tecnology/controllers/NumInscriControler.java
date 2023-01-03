@@ -8,11 +8,25 @@ import trilight_tecnology.models.NumInscri;
 import trilight_tecnology.models.RegistroAlumno;
 import trilight_tecnology.models.Semestre;
 
+
+/**
+ * Contrlador de los numeros de inscripcion
+ * @author Anvil
+ */
 public class NumInscriControler {
     private HistorialAcademico historialPerfecto;
+    /**
+     * Construtor que inyecta
+     * @param historialAcademico el historial perfecto que sirve como referencia
+     */
     public NumInscriControler(HistorialAcademico historialAcademico) {
         this.historialPerfecto = historialAcademico;
     }
+    /**
+     * Calculo del indice escolar para un alumno
+     * @param alumno al que se desea calcular su numero de inscripcion
+     * @return NumIscri que contine el numero de inscripcion
+     */
     private NumInscri calIndiceEscolar(RegistroAlumno alumno){
         DbHistorialAcademico dbHistorialAcademico = new DbHistorialAcademico();
         HistorialAcademico historialAcademico = dbHistorialAcademico.consultarHistorial(alumno.idAlumno);
@@ -24,7 +38,11 @@ public class NumInscriControler {
         return numInscri;
     }
 
-
+    /**
+     * Calculo de la escolaridad
+     * @param historialAcademico historial de donde extrar la informacion
+     * @return valor de la escolaridad
+     */
     private Double escolaridad(HistorialAcademico historialAcademico){
         Double materiasAprobadas = 0d;
         Double materiasInscritas = 0d;
@@ -37,6 +55,11 @@ public class NumInscriControler {
         Double escolaridad = materiasAprobadas/materiasInscritas;
         return escolaridad*100d;
     }
+    /**
+     * Calculo de la velocidad
+     * @param historialAcademico historial de donde extrar la informacion
+     * @return valor de la velocidad
+     */
     private Double velocidad(HistorialAcademico historialAcademico){
         Double creditosAlumno = 0d;
         Double creditosReferencia = 0d;
@@ -49,7 +72,12 @@ public class NumInscriControler {
         Double velocidad = creditosAlumno/creditosReferencia;
         return velocidad*100d;
     }
-
+    /**
+     * Deteriminacion de el numero de inscripcion de un alumno
+     * @param idAlu alumno al que se desea calcular el numero
+     * @param alumnos Conjunto de todos los alumnos
+     * @return Numero de inscripcion
+     */
     public NumInscri consultarNumInscri(Integer idAlu,ArrayList<RegistroAlumno> alumnos){
         Integer num = 1;
         ArrayList<NumInscri> numeros = calIndicesEscolares(alumnos);
@@ -62,6 +90,11 @@ public class NumInscriControler {
         }
         return null;
     }
+    /**
+     * Consulta de todos los numeros de inscripcion
+     * @param alumnos Conjunto de todos los alumnos
+     * @return Lista con todos los numeros de inscripcion
+     */
     public ArrayList<NumInscri> consultarNumerosInscri(ArrayList<RegistroAlumno> alumnos){
         ArrayList<NumInscri> numeros = calIndicesEscolares(alumnos);
         Integer num = 1;
@@ -72,6 +105,11 @@ public class NumInscriControler {
         return numeros;
 
     }
+    /**
+     * Determinacion de todos los indices escolares
+     * @param alumnos Lista de alumnos a determinar indices escolares
+     * @return Lista de numeros de inscricpcion con indecies determinados
+     */
     private ArrayList<NumInscri> calIndicesEscolares(ArrayList<RegistroAlumno> alumnos){
         ArrayList<NumInscri> numeros = new ArrayList<NumInscri>();
         for(RegistroAlumno alumno : alumnos){
@@ -80,7 +118,12 @@ public class NumInscriControler {
         numeros = ordenarNumeros(numeros);
         return numeros;
     }
-
+    /**
+     * Ordenamiento en base a los indices escolares de los numeros de inscripcion 
+     * de manera descendente
+     * @param toSortArrayList
+     * @return
+     */
     private ArrayList<NumInscri> ordenarNumeros(ArrayList<NumInscri> toSortArrayList){
         toSortArrayList.sort((a,b)-> {
             if(a.indiceEscolar.compareTo(b.indiceEscolar)==-1)return 1;

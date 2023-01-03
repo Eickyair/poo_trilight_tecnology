@@ -17,14 +17,21 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * clase encargada de manipular achivos csv
  * @author Anvil
  */
 public class Csv {
     private String pathCsv;
 
+    /**
+     * Constructor vacio
+     */
     public Csv() {
     }
+    /**
+     * Obtencion del header de un csv,SUPONIENDO que esta en el primer renglon
+     * @return Header del archivo,null si hubo algun error
+     */
     public String getHeader(){
         FileReader fr = reader(pathCsv);
         try (BufferedReader br = new BufferedReader(fr)) {
@@ -36,6 +43,11 @@ public class Csv {
         }
         return null;
     }
+    /**
+     * Apertura de un archivo en formato lectura
+     * @param pathFile ruta del archivo
+     * @return objeto file reader 
+     */
     private FileReader reader(String pathFile){
         FileReader fr=null;
         try {
@@ -45,7 +57,11 @@ public class Csv {
         }
         return fr;
     }
-    
+    /**
+     * Apertura de un achivo en formato escritura
+     * @param pathFile ruta del archivo
+     * @return Objeto FileWriter para hacer la escritura
+     */
     private FileWriter writer(String pathFile){
         FileWriter fw = null;
         try {
@@ -55,13 +71,27 @@ public class Csv {
         }
         return fw;
     }
+    /**
+     * Constructor que inicializa la ruta del archivo
+     * csv a manipular
+     * @param pathCsv ruta del archivo
+     */
     public Csv(String pathCsv) {
         this.pathCsv = pathCsv;
     }
+    /**
+     * Eliminacion del archivo que manipula este
+     * objeto
+     * @return
+     */
     public Boolean eliminarAchivo(){
         File file = new File(pathCsv);
         return file.delete();
     }
+    /**
+     * Obtiene todas las lineas del archivo csv sin el header
+     * @return Array con todas las filas,null en caso de error
+     */
     public String[] getAllRecords(){
         try {
             ArrayList<String> data = new ArrayList<String>();
@@ -85,7 +115,12 @@ public class Csv {
         }
         return null;
     }
-
+    /**
+     * Elimininacion de un registro que se ubica en
+     * una fila en particular
+     * @param fila fila a eliminar
+     * @return status de la operacion
+     */
     public Boolean elimarRegistro(Integer fila){
         String header = getHeader();
         if(header == null) return false;
@@ -102,7 +137,11 @@ public class Csv {
         pr.close();
         return true;
     }
-
+    /**
+     * Inserta al final del archivo un registro
+     * @param record valor del registro en formato csv
+     * @return status de la operacion
+     */
     public Boolean insertarUnRegistro(String record){
         String header = getHeader();
         if(header == null) return false;
@@ -126,6 +165,12 @@ public class Csv {
         pw.close();
         return true;
     }
+    /**
+     * Reescritura de un registro para su actualizacion
+     * @param record nueva informacion
+     * @param row fila a ser reescrita
+     * @return status de la operacion
+     */
     public Boolean actualizarUnRegistro(String record, Integer row){
         String header = getHeader();
         if(header == null) return false;

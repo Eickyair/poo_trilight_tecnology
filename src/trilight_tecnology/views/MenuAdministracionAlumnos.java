@@ -12,7 +12,7 @@ import trilight_tecnology.models.HistorialAcademico;
 import trilight_tecnology.models.RegistroAlumno;
 
 /**
- *
+ * Gestion del CRUD alumnos
  * @author Anvil
  */
 public class MenuAdministracionAlumnos extends Menu{
@@ -48,6 +48,9 @@ public class MenuAdministracionAlumnos extends Menu{
         }
         return true;
     }
+    /**
+     * Proceso para crear un alumno, su historial se autogenera
+     */
     public void casoUno(){
         ReaderConsole lector = ReaderConsole.getInstance();
         RegistrosAlumnosControler registrosAlumnosControler = new RegistrosAlumnosControler();
@@ -60,6 +63,9 @@ public class MenuAdministracionAlumnos extends Menu{
         Boolean res = registrosAlumnosControler.guardarAlumno(alumno);
         status(res);
     }
+    /**
+     * Proceso para consultar la informacion de un alumno
+     */
     public void casoDos(){
         ReaderConsole lector = ReaderConsole.getInstance();
         RegistrosAlumnosControler registrosAlumnosControler = new RegistrosAlumnosControler();
@@ -73,6 +79,9 @@ public class MenuAdministracionAlumnos extends Menu{
         historialAcademicoView.mostraEnConsola(alumno);
         lector.espera();
     }
+    /**
+     * Proceso para actualizar un alumno
+     */
     public void casoTres(){
         RegistrosAlumnosControler registrosAlumnosControler = new RegistrosAlumnosControler();
         ArrayList<RegistroAlumno> alumnos = registrosAlumnosControler.getAlumnos();
@@ -84,6 +93,9 @@ public class MenuAdministracionAlumnos extends Menu{
         Boolean res = registrosAlumnosControler.actualizarAlumno(update);
         status(res);
     }
+    /**
+     * Proceso para eliminar un alumno
+     */
     public void casoCuatro(){
         RegistrosAlumnosControler registrosAlumnosControler = new RegistrosAlumnosControler();
         DbHistorialAcademico dbHistorialAcademico = new DbHistorialAcademico();

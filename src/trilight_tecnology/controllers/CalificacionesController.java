@@ -9,23 +9,46 @@ import java.util.ArrayList;
 import trilight_tecnology.models.Materia;
 
 /**
- * CRUD de las calificaciones
+ * Manipulacion de la informacion de las calificaciones
  * @author chaia
  */
 public class CalificacionesController {
+    /**
+     * Constructor vacio
+     */
     public CalificacionesController(){}
+    /**
+     * Guardado de una materia en el historial del alumno
+     * @param toSave Materia a guardar en el csv
+     * @param idAlumno alumno a quien pertenece esta informacion
+     * de la materia
+     * @return status de la operacion
+     */
     public Boolean guardarMateria(Materia toSave,Integer idAlumno){
         Csv csv = new Csv("./db/registros/"+idAlumno.toString()+".csv");
         String record = toSave.recordDb();
         return csv.insertarUnRegistro(record);
     }
-
+    /**
+     * Determinacion de si una materia esta en una lista de materias a
+     * apartir de su clave
+     * @param materias lista en donde buscar
+     * @param clave clave a buscar
+     * @return null si no se encontro, un objeto materia con la clave otorgada
+     */
     public Materia buscarMateriaEnArray(ArrayList<Materia> materias,Integer clave){
         for(Materia materia : materias){
             if(materia.clave.intValue() == clave.intValue())return materia;
         }
         return null;
     }
+    /**
+     * Actulizacion del archivo con la informacion del historial de un alumno
+     * en cuanto a una materia ya registrada
+     * @param nuevo Nueva informacion del registro
+     * @param idAlumno Alumno quien recibira la informacion
+     * @return status de la operacion
+     */
     public Boolean actualizarMateria(Materia nuevo,Integer idAlumno){
         Csv csv = new Csv("./db/registros/"+idAlumno.toString()+".csv");
         String[] records = csv.getAllRecords();

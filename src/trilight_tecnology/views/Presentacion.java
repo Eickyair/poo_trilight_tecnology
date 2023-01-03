@@ -1,5 +1,7 @@
 package trilight_tecnology.views;
-
+/**
+ * Presentacion del proyecto
+ */
 public class Presentacion {
     public static void presentacion(){
         System.out.println("PROGRAMACION ORIENTADA A OBJETOS(POO)");

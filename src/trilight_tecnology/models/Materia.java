@@ -13,7 +13,8 @@ import trilight_tecnology.views.Fila;
 import trilight_tecnology.views.Tabla;
 
 /**
- *
+ * Clase que enpaqueta la informacion de una materia
+ * cursada
  * @author Milanesus
  */
 public class Materia implements ToList,Registrable{
@@ -22,10 +23,19 @@ public class Materia implements ToList,Registrable{
     public Integer creditos;
     public Integer semestre;
     public Double calificacion;
-
+    /**
+     * Constructor vacio
+     */
     public Materia() {
     }
-
+    /**
+     * Constructor que inicializa el objeto con
+     * @param clave Clave de la materia
+     * @param nombre Nombre de la materia
+     * @param creditos Creditos que otorga la materia
+     * @param semestre Semestre en que fue cursada
+     * @param calificacion Calificacion obtenida
+     */
     public Materia(Integer clave, String nombre, Integer creditos, Integer semestre, double calificacion) {
         this.clave = clave;
         this.nombre = nombre;
@@ -60,7 +70,9 @@ public class Materia implements ToList,Registrable{
         record+=cast.notNullString(this.calificacion);
         return record;
     }
-
+    /**
+     * Despligue de la materia como renglon de una tabla
+     */
     public void mostrarMateriaComoFila(){
         Tabla tabla = new Tabla();
         ArrayList<String> values = toListStrings();
@@ -71,7 +83,11 @@ public class Materia implements ToList,Registrable{
         fila.top = tabla.separar(lens, "+");
         fila.showRow(true, false);
     }
-
+    /**
+     * Despliegue de la materia como renglon de una tabla pero 
+     * omitiendo su calificacion y sustituyendo por NAN
+     * @param actualizar
+     */
     public void mostrarMateriaComoFila(Boolean actualizar){
         Tabla tabla = new Tabla();
         ArrayList<String> values = toListStrings();

@@ -6,6 +6,8 @@ package trilight_tecnology.views;
 
 
 /**
+ * Esta es la clase Menu. Proporciona un menú en la consola para seleccionar
+ * y ejecutar diferentes tareas.
  *
  * @author Anvil
  */
@@ -14,6 +16,21 @@ public class Menu {
     private String titulo=null;
     public Menu() {
     }
+    /**
+    * Constructor de la clase Menu.
+    * @param op Arreglo de opciones que se mostrarán en el menú
+    * @param titulo Título del menú
+    */
+    public Menu(String[] op,String titulo) {
+        this.op = op;
+        this.titulo = titulo;
+    }
+    /**
+     * Este método muestra un mensaje en la consola indicando si una operación se
+     * realizó correctamente o no.
+     *
+     * @param status Booleano que indica si la operación se realizó correctamente (true) o no (false).
+     */
     public void status(Boolean status){
         ReaderConsole lector = ReaderConsole.getInstance();
         if(status){
@@ -23,14 +40,13 @@ public class Menu {
         }
         lector.espera();
     }
+    /**
+     * Este método muestra el título del menú en la consola.
+     */
     public void mostraTitulo(){
         if(titulo == null) return;
         if(titulo.isEmpty()) return;
         System.out.println(titulo);
-    }
-    public Menu(String[] op,String titulo) {
-        this.op = op;
-        this.titulo = titulo;
     }
 
     /**
@@ -48,6 +64,10 @@ public class Menu {
             continuar = capturarOpcion();
         }
     }
+    /**
+    * Método para leer una opción del menú.
+    * @return Entero que representa la opción seleccionada
+    */
     public Integer leerOpcion(){
         Integer response = null;
         ReaderConsole reader = ReaderConsole.getInstance();

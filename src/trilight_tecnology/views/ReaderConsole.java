@@ -3,13 +3,20 @@ package trilight_tecnology.views;
 import java.util.Scanner;
 
 import trilight_tecnology.models.RegistroAlumno;
-
+/**
+ * Lector generar de todo el sistema
+ */
 public class ReaderConsole {
     private static ReaderConsole single = null;
     private Scanner input = null;
     private ReaderConsole(){
         input = new Scanner(System.in);
     }
+    /**
+     * Lectura y validacion de una calificacion
+     * @return Null si hubo un error, en otro caso la calificacion de
+     * la materia
+     */
     public Double readCalif(){
         String line = input.nextLine();
         Double calf = null;
@@ -21,16 +28,28 @@ public class ReaderConsole {
         if(calf.doubleValue()<0 || calf.doubleValue()>10)return null;
         return calf;
     }
+    /**
+     * Metodo statico para obtener la una instancia del sistema
+     * @return El unico objeto de esta clase
+     */
     public static ReaderConsole getInstance(){
         if(single == null){
             return new ReaderConsole();
         }
         return single;
     }
+    /**
+     * Detencion del sistema
+     */
     public void espera(){
         System.out.println("Presiones Enter para Continuar");
         input.nextLine();
     }
+    /**
+     * Lectura para actualizar el registro de un alumno
+     * @param old Viejo registro del alumno
+     * @return Nuevo registro del alumno
+     */
     public RegistroAlumno leerActualizacion(RegistroAlumno old){
         RegistroAlumno nuevo = new RegistroAlumno();
         nuevo.apellido = old.apellido;
@@ -63,6 +82,10 @@ public class ReaderConsole {
         }
         return nuevo;
     }
+    /**
+     * Lectura de un entero
+     * @return null en caso de un error, integer en otro caso
+     */
     public Integer readInteger(){
         String line = input.nextLine();
         Integer result = null;
@@ -73,6 +96,10 @@ public class ReaderConsole {
         }
         return result;
     }
+    /**
+     * Lectura de un nuevo registro de una alumno
+     * @return Nuevo registro de un alumno en el sistema
+     */
     public RegistroAlumno leerUnRegistroAlumno(){
         RegistroAlumno alumno = new RegistroAlumno();
         int NUM_ATRRS = 4;
@@ -111,7 +138,10 @@ public class ReaderConsole {
         }
         return alumno;
     }
-
+    /**
+     * Lectura de una linea
+     * @return
+     */
     public String readLine(){
         return input.nextLine();
     }

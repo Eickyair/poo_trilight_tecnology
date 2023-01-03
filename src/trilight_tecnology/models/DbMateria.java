@@ -12,15 +12,22 @@ import trilight_tecnology.controllers.HistorialAcademicoControler;
 import trilight_tecnology.controllers.SemestreControler;
 
 /**
- *
+ * Clase encargada de manipular la informacion de el
+ * sistema de calificaciones
  * @author Anvil
  */
 public class DbMateria {
-
+    /**
+     * Constructor vacio
+     */
     public DbMateria() {
     }
-    
-    //mover a caster - dependencia en DbHistorialAcademico
+
+    /**
+     * Transformacion de la informacion de texto a un objeto Materia
+     * @param registroCsv informacion en formato csv
+     * @return Objeto Materia con el caste hecho
+     */
     public Materia casteo(String registroCsv){
         Materia materia = new Materia();
         int CLAVE = 0;
@@ -47,7 +54,13 @@ public class DbMateria {
         }
         return materia;
     }
-
+    /**
+     * Consulta de la materias que curso el alumno o debe en el semestre
+     * actual pero que aun no hay registro
+     * @param idAlumno Alumno a quien pertenece estas materias
+     * @return Lista de materias sin registro que debe,null si ya no debe ninguna materia
+     * en la carrera
+     */
     public ArrayList<Materia> materiaSinCalificacion(Integer idAlumno){
         ArrayList<Materia> materias = new ArrayList<Materia>();
         DbHistorialAcademico dbHistorialAcademico = new DbHistorialAcademico();
@@ -82,6 +95,12 @@ public class DbMateria {
         if(materias.size()==0)return null;
         return materias;
     }
+    /**
+     * Materias que se cursan en el semestre actual y que ya poseen calificacion
+     * @param idAlumno alumno asociado a estas materias
+     * @return Lista de materias del semestre actul con calificacion, null si aun no se suben las
+     * materias al sistema
+     */
     public ArrayList<Materia> materiasSemestreActual(Integer idAlumno){
         DbHistorialAcademico dbHistorialAcademico = new DbHistorialAcademico();
         HistorialAcademico historialAcademico = dbHistorialAcademico.consultarHistorial(idAlumno);

@@ -7,10 +7,21 @@ import trilight_tecnology.controllers.RegistrosAlumnosControler;
 import trilight_tecnology.models.DbMateria;
 import trilight_tecnology.models.Materia;
 import trilight_tecnology.models.RegistroAlumno;
-
+/**
+ * Clase encargada de las operaciones del sistema
+ * de calificaciones
+ */
 public class MenuSistemaCalf extends Menu{
+    /**
+     * Constructor vacio
+     */
     public MenuSistemaCalf() {
     }
+    /**
+    * Constructor de la clase Menu.
+    * @param op Arreglo de opciones que se mostrarán en el menú
+    * @param titulo Título del menú
+    */
     public MenuSistemaCalf(String[] op, String titulo) {
         super(op,titulo);
     }
@@ -33,7 +44,9 @@ public class MenuSistemaCalf extends Menu{
         }
         return true;
     }
-
+    /**
+     * Proceso para subir calificaciones
+     */
     private void casoUno(){
         ReaderConsole lReaderConsole = ReaderConsole.getInstance();
         RegistrosAlumnosControler registrosAlumnosControler = new RegistrosAlumnosControler();
@@ -71,7 +84,9 @@ public class MenuSistemaCalf extends Menu{
         Boolean res = calificacionesController.guardarMateria(materia, alumno.idAlumno);
         status(res);
     }
-
+    /**
+     * Proceso para actualizar calificaciones
+     */
     private void casoDos(){
         ReaderConsole lReaderConsole = ReaderConsole.getInstance();
         RegistrosAlumnosControler registrosAlumnosControler = new RegistrosAlumnosControler();

@@ -6,7 +6,7 @@ package trilight_tecnology.views;
 
 
 /**
- *
+ * Objeto para solicitar informacion del admin
  * @author Anvil
  */
 public class LogAdminView {

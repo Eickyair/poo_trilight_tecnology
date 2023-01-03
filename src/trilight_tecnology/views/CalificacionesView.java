@@ -9,12 +9,20 @@ import java.util.ArrayList;
 import trilight_tecnology.models.Materia;
 
 /**
- *
+ * Despligue del sistema de calificaciones en la consola
  * @author chaia
  */
 public class CalificacionesView extends Tabla {
+    /**
+     * Contructor vacio
+     */
     public CalificacionesView(){
     }
+    /**
+     * Este método inicializa y devuelve una lista de encabezados para una tabla.
+     *
+     * @return Una lista de encabezados de tipo String.
+     */
     private ArrayList<String> initHeader(){
         ArrayList<String> header = new ArrayList<String>();
         header.add("CLAVE");
@@ -23,6 +31,12 @@ public class CalificacionesView extends Tabla {
         header.add("CALIFICACION");
         return header;
     }
+    /**
+     * Este método muestra una lista de materias en forma de tabla y solicita al usuario que introduzca la clave de una materia.
+     *
+     * @param materias Una lista de materias a mostrar.
+     * @return La clave de la materia seleccionada por el usuario.
+     */
     public Integer mostraMaterias(ArrayList<Materia> materias){
         ReaderConsole lectReaderConsole = ReaderConsole.getInstance();
         ArrayList<String> header = initHeader();
@@ -39,6 +53,14 @@ public class CalificacionesView extends Tabla {
         System.out.println("Introduce la clave de la materia:");
         return lectReaderConsole.readInteger();
     }
+    /**
+     * Este método muestra una lista de materias en forma de tabla y solicita
+     * al usuario que introduzca la clave de una materia.Este metodo es una sobrecarga
+     * para que el campo de las calificaciones aparezca "NAN"
+     *
+     * @param materias Una lista de materias a mostrar.
+     * @return La clave de la materia seleccionada por el usuario.
+     */
     public Integer mostraMaterias(ArrayList<Materia> materias,Boolean nuevas){
         ReaderConsole lectReaderConsole = ReaderConsole.getInstance();
         ArrayList<String> header = initHeader();

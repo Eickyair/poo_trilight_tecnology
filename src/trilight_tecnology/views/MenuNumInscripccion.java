@@ -9,7 +9,16 @@ import trilight_tecnology.models.NumInscri;
 import trilight_tecnology.models.RegistroAlumno;
 
 public class MenuNumInscripccion extends Menu {
+    /**
+     * Constructor vacio
+     */
     public MenuNumInscripccion(){}
+    /**
+     * Constructor que inicializa la instancia con opcciones para desplegar
+     * y un titutlo
+     * @param op opcciones a desplegar en el menu
+     * @param titulo titulo del menu
+     */
     public MenuNumInscripccion(String[] op,String titulo){
         super(op,titulo);
     }
@@ -32,6 +41,9 @@ public class MenuNumInscripccion extends Menu {
         }
         return true;
     }
+    /**
+     * Consultar un numero de Inscripcion
+     */
     private void casoUno(){
         RegistrosAlumnosControler registrosAlumnosControler = new RegistrosAlumnosControler();
         DbHistorialAcademico dbHistorialAcademico = new DbHistorialAcademico();
@@ -46,6 +58,9 @@ public class MenuNumInscripccion extends Menu {
         numInscriView.mostrarUnNumero(seleccionado);
         lector.espera();
     }
+    /**
+     * Consultar todos los numeros de inscripcion
+     */
     private void casoDos(){
         RegistrosAlumnosControler registrosAlumnosControler = new RegistrosAlumnosControler();
         DbHistorialAcademico dbHistorialAcademico = new DbHistorialAcademico();

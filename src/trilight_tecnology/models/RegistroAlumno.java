@@ -10,7 +10,7 @@ import trilight_tecnology.controllers.Casteador;
  */
 
 /**
- *
+ * Clase encorgada de representar la informacion de un alumno
  * @author Anvil
  */
 public class RegistroAlumno implements Registrable,ToList {

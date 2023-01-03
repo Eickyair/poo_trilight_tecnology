@@ -8,7 +8,7 @@ import java.util.Hashtable;
 
 
 /**
- *
+ * Clase encargada de enpaquetar la informacion de un historial
  * @author Milanesus
  */
 public class HistorialAcademico {
@@ -16,9 +16,17 @@ public class HistorialAcademico {
     public double promedio;
     public Hashtable<Integer, Semestre> semestres;
     public Integer semestreActual;
+    /**
+     * Constructor vacio
+     */
     public HistorialAcademico() {
     }
-
+    /**
+     * Costructor que inicializa el objeto con
+     * @param idAlumno Alumno al que pertenece este historial
+     * @param promedio Promedio general del alumno
+     * @param semestres Informacion de cada uno de los semestres
+     */
     public HistorialAcademico(Integer idAlumno, double promedio, Hashtable<Integer, Semestre> semestres) {
         this.idAlumno = idAlumno;
         this.promedio = promedio;

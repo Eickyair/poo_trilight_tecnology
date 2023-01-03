@@ -9,15 +9,24 @@ import trilight_tecnology.controllers.Casteador;
 import trilight_tecnology.models.RegistroAlumno;
 
 /**
- *
+ * Presentacion de la informacion de los registros en tablas
  * @author Anvil
  */
 public class RegistrosAlumnosView extends Tabla {
     public ArrayList<RegistroAlumno> toPrint;
-
+    /**
+     * Este constructor inicializa una instancia de la clase RegistrosAlumnosView.
+     *
+     * @param toPrint Una lista de registros de alumnos a mostrar.
+     */
     public RegistrosAlumnosView(ArrayList<RegistroAlumno> toPrint) {
         this.toPrint = toPrint;
     }
+    /**
+     * Este método inicializa y devuelve una lista de encabezados para una tabla.
+     *
+     * @return Una lista de encabezados de tipo String.
+     */
     private ArrayList<String> initHeader(){
         ArrayList<String> header = new ArrayList<String>();
         header.add("ROW");
@@ -68,6 +77,12 @@ public class RegistrosAlumnosView extends Tabla {
             }
         }
     }
+    /**
+     * Este método muestra un "slide" de registros de alumnos en una tabla.
+     *
+     * @param first El índice del primer registro a mostrar.
+     * @param end El índice del último registro a mostrar.
+     */
     private void mostrarSlide(Integer first,Integer end){
         LimpiarConsola limpiarConsola = new LimpiarConsola();
         limpiarConsola.limpiarTodo();

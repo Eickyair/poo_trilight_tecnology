@@ -9,5 +9,10 @@ package trilight_tecnology.models;
  * @author Anvil
  */
 public interface Registrable {
+    /**
+     * Formato que debe tener un objeto para ser registrado
+     * en un csv
+     * @return Cadena en formato csv con la informacion del objeto
+     */
     String recordDb();
 }

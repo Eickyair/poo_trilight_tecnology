@@ -16,7 +16,10 @@ import trilight_tecnology.models.RegistroAlumno;
 public class RegistrosAlumnosControler {
     public RegistrosAlumnosControler(){
     }
-
+    /**
+     * Obtencion de todos los registros de los alumnos
+     * @return Lista con todas los registros de los alumnos
+     */
     public ArrayList<RegistroAlumno> getAlumnos(){
         Csv csv = new Csv("./db/mainAlu.csv");
         String[] infos = csv.getAllRecords();
@@ -31,7 +34,11 @@ public class RegistrosAlumnosControler {
     }
 
 
-
+    /**
+     * Eliminacion de un alumno en el sistema
+     * @param id alumon a eliminar
+     * @return status de la operacion
+     */
     public Boolean borrarAlumno(Integer id){
         Csv csv = new Csv("./db/mainAlu.csv");
         String[] data = csv.getAllRecords();
@@ -46,6 +53,11 @@ public class RegistrosAlumnosControler {
         }
         return false;
     }
+    /**
+     * Obtencion de un solo alumon por su id
+     * @param id del alumno
+     * @return null si hubo un error, registro del alumno en otro caso
+     */
     public RegistroAlumno getAlumno(Integer id){
         ArrayList<RegistroAlumno> alumnos = getAlumnos();
         for(RegistroAlumno alumno : alumnos){
@@ -55,6 +67,11 @@ public class RegistrosAlumnosControler {
         }
         return null;
     }
+    /**
+     * Creacion de un nuevo registro de alumno, tambien se auto genera su historial
+     * @param alumno Informacion de alumno
+     * @return status de la operacion
+     */
     public Boolean guardarAlumno(RegistroAlumno alumno){
         Csv csv = new Csv("./db/mainAlu.csv");
         Generar generar = new Generar("./db/alumnos.csv");
@@ -66,6 +83,11 @@ public class RegistrosAlumnosControler {
         String record = alumno.recordDb();
         return csv.insertarUnRegistro(record);
     }
+    /**
+     * Actualizacion de la informacion de un alumno
+     * @param nuevo nueva informacion a escribir
+     * @return status de la operacion
+     */
     public Boolean actualizarAlumno(RegistroAlumno nuevo){
         Csv csv = new Csv("./db/mainAlu.csv");
         String[] records = csv.getAllRecords();

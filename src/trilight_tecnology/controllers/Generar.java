@@ -6,11 +6,14 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Random;
 import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import trilight_tecnology.models.RegistroAlumno;
 
 /**
  * Clase encargada de la generacion de alumnos
@@ -21,7 +24,7 @@ public class Generar {
     private String[] semestres = null;
     private String header = "clave,nombre,creditos,semestre,calificacion";
     private HashMap<Integer, ArrayList<String>> mapSemestres = null;
-    public static Integer autoID = 5001;
+    public static Integer autoID;
     /**
      * Constructor der generador de alumnos
      * @param pathDbSrcAlu informacion de la cual consumir para generar los
@@ -38,14 +41,17 @@ public class Generar {
      * @return id
      */
     public static Integer getAutoID() {
+        if(autoID==null){
+            RegistrosAlumnosControler registrosAlumnosControler = new RegistrosAlumnosControler();
+            ArrayList<RegistroAlumno> alumnos = registrosAlumnosControler.getAlumnos();
+            Integer max = -1;
+            for(RegistroAlumno alumno : alumnos){
+                max = Math.max(alumno.idAlumno, max);
+            }
+            autoID = max;
+        }
+        autoID++;
         return autoID;
-    }
-    /**
-     * Actualizacion del id
-     * @param autoID nuevo auto id
-     */
-    public static void setAutoID(Integer autoID) {
-        Generar.autoID = autoID;
     }
     /**
      * Dado un registro en formato csv de alumno
@@ -115,6 +121,8 @@ public class Generar {
         }
         pw.close();
         generarHistoriales("./db/registros", ids, edades);
+        autoID = Collections.max(ids);
+
     }
 
     /**

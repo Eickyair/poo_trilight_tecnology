@@ -12,6 +12,9 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -84,8 +87,9 @@ public class Csv {
      * objeto
      * @return
      */
-    public Boolean eliminarAchivo(){
-        File file = new File(pathCsv);
+    public Boolean eliminarAchivo(Integer idAlu){
+        Path ruta = Paths.get("db","registros",idAlu.toString()+".csv");
+        File file = ruta.toFile();
         return file.delete();
     }
     /**
@@ -111,9 +115,8 @@ public class Csv {
             }
             return records;
         } catch (IOException ex) {
-            Logger.getLogger(Csv.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
-        return null;
     }
     /**
      * Elimininacion de un registro que se ubica en
@@ -131,7 +134,8 @@ public class Csv {
         PrintWriter pr = new PrintWriter(bw);
         pr.println(header);
         for (int i = 0; i < data.length; i++){
-            if(i==fila)continue;
+            if(i==fila.intValue())
+                continue;
             pr.println(data[i]);
         }
         pr.close();
@@ -188,13 +192,11 @@ public class Csv {
         }
         pw.println(header);
         Integer i = 0;
-        for(String line:cache){
-            if(i==row){
+        for(;i<cache.length;i++){
+            String line = cache[i];
+            if(i.intValue()==row.intValue()){
                 pw.println(record);
-            }else{
-                pw.println(line);
-            }
-            i++;
+            }else pw.println(line);
         }
         pw.close();
         return true;

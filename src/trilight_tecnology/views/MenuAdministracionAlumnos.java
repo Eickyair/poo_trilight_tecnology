@@ -98,21 +98,11 @@ public class MenuAdministracionAlumnos extends Menu{
      */
     public void casoCuatro(){
         RegistrosAlumnosControler registrosAlumnosControler = new RegistrosAlumnosControler();
-        DbHistorialAcademico dbHistorialAcademico = new DbHistorialAcademico();
         ArrayList<RegistroAlumno> alumnos = registrosAlumnosControler.getAlumnos();
         RegistrosAlumnosView registrosAlumnosView = new RegistrosAlumnosView(alumnos);
         Integer index = registrosAlumnosView.mostrarEnSlides(10);
         RegistroAlumno alumno = alumnos.get(index);
         Boolean res = registrosAlumnosControler.borrarAlumno(alumno.idAlumno);
-        if(res==false){
-            status(res);
-            return;
-        }
-        res = dbHistorialAcademico.eliminarHistorial(alumno.idAlumno);
-        if(res==false){
-            status(res);
-            return;
-        }
         status(res);
     }
 }

@@ -6,7 +6,7 @@ package trilight_tecnology.controllers;
 
 import java.util.ArrayList;
 
-
+import trilight_tecnology.models.DbHistorialAcademico;
 import trilight_tecnology.models.RegistroAlumno;
 
 /**
@@ -42,13 +42,27 @@ public class RegistrosAlumnosControler {
     public Boolean borrarAlumno(Integer id){
         Csv csv = new Csv("./db/mainAlu.csv");
         String[] data = csv.getAllRecords();
+        if(data==null)return false;
         Casteador caster = new Casteador();
         RegistroAlumno alumno = null;
         for (int i = 0; i < data.length; i++) {
             alumno = caster.castRegistroAlumno(data[i]);
             if(alumno.idAlumno.intValue() == id.intValue()){
                 Boolean res = csv.elimarRegistro(i);
-                return res;
+                if(res==false)return false;
+                DbHistorialAcademico dbHistorialAcademico = new DbHistorialAcademico();
+                res = dbHistorialAcademico.eliminarHistorial(id);
+                if(res)return res;
+                /**
+                 * En este punto en mainAlu ya no se encuentra el alumno por lo que
+                 * debemos validar que si no se pudo borrar el historial entonces hay
+                 * que volver a reescribir al alumno
+                 */
+                Boolean reescribirEnMainAlu = false;
+                while(reescribirEnMainAlu==false){
+                    reescribirEnMainAlu = csv.insertarUnRegistro(alumno.recordDb());
+                }
+                return false;
             }
         }
         return false;
@@ -76,8 +90,6 @@ public class RegistrosAlumnosControler {
         Csv csv = new Csv("./db/mainAlu.csv");
         Generar generar = new Generar("./db/alumnos.csv");
         alumno.idAlumno = Generar.getAutoID();
-        Generar.setAutoID(alumno.idAlumno+1);
-
         Boolean res = generar.generarUnHistorial(alumno.idAlumno, alumno.edad);
         if(res==false)return false;
         String record = alumno.recordDb();
@@ -91,6 +103,7 @@ public class RegistrosAlumnosControler {
     public Boolean actualizarAlumno(RegistroAlumno nuevo){
         Csv csv = new Csv("./db/mainAlu.csv");
         String[] records = csv.getAllRecords();
+        if(records==null)return false;
         RegistroAlumno alumno = null;
         Casteador casteador = new Casteador();
         for(Integer row=0;row<records.length;row++){

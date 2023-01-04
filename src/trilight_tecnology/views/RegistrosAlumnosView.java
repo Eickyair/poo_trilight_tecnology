@@ -67,6 +67,11 @@ public class RegistrosAlumnosView extends Tabla {
             String input = lector.readLine();
             if(cast.castIntegerString(input)!=null){
                 row = cast.castIntegerString(input);
+                if(row.intValue()<0 || row.intValue()>=toPrint.size()){
+                    System.out.println("La fila seleccionada no existe");
+                    lector.espera();
+                    continue;
+                }
                 return row;
             }
             if(input.equals("+")){

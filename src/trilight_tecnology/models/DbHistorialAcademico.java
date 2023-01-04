@@ -42,9 +42,8 @@ public class DbHistorialAcademico {
      * @return Status de la operacion
      */
     public Boolean eliminarHistorial(Integer idAlumno){
-        String rutaArchivo = pathDbHistoriales+idAlumno+".csv";
-        Csv csv = new Csv(rutaArchivo);
-        return csv.eliminarAchivo();
+        Csv csv = new Csv();
+        return csv.eliminarAchivo(idAlumno);
     }
     /**
      * Consulta la informacion del historial de un alumno

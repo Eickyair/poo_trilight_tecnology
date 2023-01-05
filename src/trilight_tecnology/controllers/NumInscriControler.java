@@ -1,5 +1,9 @@
 package trilight_tecnology.controllers;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import trilight_tecnology.models.DbHistorialAcademico;
@@ -79,14 +83,12 @@ public class NumInscriControler {
      * @return Numero de inscripcion
      */
     public NumInscri consultarNumInscri(Integer idAlu,ArrayList<RegistroAlumno> alumnos){
-        Integer num = 1;
-        ArrayList<NumInscri> numeros = calIndicesEscolares(alumnos);
+        ArrayList<NumInscri> numeros = consultarNumerosInscri(alumnos);
+        if(numeros == null) return null;
         for(NumInscri numInscri : numeros){
             if(numInscri.alumno.idAlumno.intValue() == idAlu.intValue()){
-                numInscri.num = num;
                 return numInscri;
             }
-            num++;
         }
         return null;
     }
@@ -96,14 +98,26 @@ public class NumInscriControler {
      * @return Lista con todos los numeros de inscripcion
      */
     public ArrayList<NumInscri> consultarNumerosInscri(ArrayList<RegistroAlumno> alumnos){
+        FileWriter fileWriter = null;
+        BufferedWriter bufferedWriter = null;
+        PrintWriter printWriter = null;
+        try {
+            fileWriter = new FileWriter("db/numeros-inscripcion.csv");
+            bufferedWriter = new BufferedWriter(fileWriter);
+            printWriter = new PrintWriter(bufferedWriter);
+        } catch (Exception e) {
+            return null;
+        }
         ArrayList<NumInscri> numeros = calIndicesEscolares(alumnos);
         Integer num = 1;
+        printWriter.println("numero,id-alumno");
         for(NumInscri numInscri : numeros){
             numInscri.num = num;
             num++;
+            printWriter.println(numInscri.recordDb());
         }
+        printWriter.close();
         return numeros;
-
     }
     /**
      * Determinacion de todos los indices escolares
@@ -119,7 +133,7 @@ public class NumInscriControler {
         return numeros;
     }
     /**
-     * Ordenamiento en base a los indices escolares de los numeros de inscripcion 
+     * Ordenamiento en base a los indices escolares de los numeros de inscripcion
      * de manera descendente
      * @param toSortArrayList
      * @return

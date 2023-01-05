@@ -55,6 +55,10 @@ public class MenuNumInscripccion extends Menu {
         ReaderConsole lector = ReaderConsole.getInstance();
         NumInscriView numInscriView = new NumInscriView();
         NumInscri seleccionado = numInscriControler.consultarNumInscri(alumno.idAlumno, alumnos);
+        if(seleccionado==null){
+            status(false);
+            return;
+        }
         numInscriView.mostrarUnNumero(seleccionado);
         lector.espera();
     }
@@ -69,6 +73,10 @@ public class MenuNumInscripccion extends Menu {
         ReaderConsole lector = ReaderConsole.getInstance();
         NumInscriView numInscriView = new NumInscriView();
         ArrayList<NumInscri> seleccionados = numInscriControler.consultarNumerosInscri(alumnos);
+        if(seleccionados == null){
+            status(false);
+            return;
+        }
         numInscriView.mostrarNumeros(seleccionados);
         lector.espera();
     }

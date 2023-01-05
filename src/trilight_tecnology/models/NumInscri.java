@@ -4,7 +4,7 @@ package trilight_tecnology.models;
  * Modelo que empaqueta la informacion de un numero de inscripcion
  * @author Anvil
  */
-public class NumInscri {
+public class NumInscri implements Registrable{
     public RegistroAlumno alumno;
     public Double indiceEscolar;
     public Integer num;
@@ -16,5 +16,11 @@ public class NumInscri {
     public NumInscri(RegistroAlumno alumno,Double indiceEscolar) {
         this.alumno = alumno;
         this.indiceEscolar = indiceEscolar;
+    }
+    @Override
+    public String recordDb() {
+        String rec = "";
+        rec = num.toString()+","+alumno.idAlumno.toString();
+        return rec;
     }
 }

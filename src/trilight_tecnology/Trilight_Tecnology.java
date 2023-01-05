@@ -39,7 +39,7 @@ public class Trilight_Tecnology {
         String[] op = {
             "Gestion de registros de los alumnos",
             "Gestion de calificaciones",
-            "Gestion de los numeros de inscripccion",
+            "Gestion de los numeros de inscripcion",
             "Salir"
         };
         Menu m = new Menu(op,"__OPCIONES PRINCIPALES__");

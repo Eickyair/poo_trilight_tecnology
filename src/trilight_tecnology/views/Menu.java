@@ -72,7 +72,7 @@ public class Menu {
         Integer response = null;
         ReaderConsole reader = ReaderConsole.getInstance();
         while(response==null){
-            System.out.println("Escoge una opccion:");
+            System.out.println("Escoja una opcion:");
             response = reader.readInteger();
         }
         return response;
@@ -87,11 +87,11 @@ public class Menu {
             case 1:
                 // Gestion de alumnos
                 String[] opcionesMenuAlu = {
-                    "Registrar un Nuevo Alumno al Sistema",
-                    "Consultar la Informacion de un Alumno",
-                    "Actualizar la Informarion de un Alumno",
-                    "Eliminar el Registro de un Alumno",
-                    "Regresar al Menu Anterior"
+                    "Registrar un nuevo alumno al sistema",
+                    "Consultar la informacion de un alumno",
+                    "Actualizar la informacion de un alumno",
+                    "Eliminar el registro de un alumno",
+                    "Regresar al menu anterior"
                 };
                 MenuAdministracionAlumnos ma =
                     new MenuAdministracionAlumnos(opcionesMenuAlu,"__ADMINISTRACION DE ALUMNOS__");
@@ -100,9 +100,9 @@ public class Menu {
             case 2:
                 // Sistema de calificaciones
                 String[] opcionesMenuCalf = {
-                    "Subir Calificaciones al Sistema",
-                    "Modificar Calificaciones",
-                    "Regresar al Menu Anterior"
+                    "Subir las calificaciones al sistema",
+                    "Modificar las calificaciones de un alumno",
+                    "Regresar al menu anterior"
                 };
                 MenuSistemaCalf sistemaCalf =
                     new MenuSistemaCalf(opcionesMenuCalf,"__SISTEMA DE CALIFICACIONES__");
@@ -111,12 +111,12 @@ public class Menu {
             case 3:
                 // Gestion de numeros de Inscriccion
                 String[] opcionesMenuNums = {
-                    "Consultar el Numero de Inscriccion de un Alumno",
-                    "Obtener Todos los Numeros de Inscriccion",
+                    "Consultar el numero de inscripcion de un alumno",
+                    "Obtener todos los numeros de inscripcion",
                     "Regresar"
                 };
                 MenuNumInscripccion numInscripccion = 
-                    new MenuNumInscripccion(opcionesMenuNums,"__NUMEROS DE INSCRICCION__");
+                    new MenuNumInscripccion(opcionesMenuNums,"__NUMEROS DE INSCRIPCION__");
                 numInscripccion.opcionesPrincipales();
                 break;
             case 4:

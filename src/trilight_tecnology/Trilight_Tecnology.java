@@ -37,9 +37,9 @@ public class Trilight_Tecnology {
         }
         limpiador.limpiarTodo();
         String[] op = {
-            "Gestionar Registros Academicos de los Alumnos",
-            "Sistema de Calificaciones",
-            "Gestion Numeros de Inscripccion",
+            "Gestion de registros de los alumnos",
+            "Gestion de calificaciones",
+            "Gestion de los numeros de inscripccion",
             "Salir"
         };
         Menu m = new Menu(op,"__OPCIONES PRINCIPALES__");

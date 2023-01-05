@@ -1,5 +1,5 @@
 # Documentos autogenerados
-db/registros/
+db/registros/*.csv
 db/mainAlu.csv
 ### VisualStudioCode ###
 .vscode
